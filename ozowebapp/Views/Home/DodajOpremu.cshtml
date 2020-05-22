@@ -1,0 +1,54 @@
+﻿@model ozowebapp.Models.DodajOpremu
+
+@{
+    ViewData["Title"] = "DodajOpremu";
+}
+
+<h2>DodajOpremu</h2>
+
+<h4>DodajOpremu</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="DodajOpremu">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Naziv" class="control-label"></label>
+                <input asp-for="Naziv" class="form-control" />
+                <span asp-validation-for="Naziv" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Kolicina" class="control-label"></label>
+                <input asp-for="Kolicina" class="form-control" />
+                <span asp-validation-for="Kolicina" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Cijena" class="control-label"></label>
+                <input asp-for="Cijena" class="form-control" />
+                <span asp-validation-for="Cijena" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Duljina_Koristenja_u_h" class="control-label"></label>
+                <input asp-for="Duljina_Koristenja_u_h" class="form-control" />
+                <span asp-validation-for="Duljina_Koristenja_u_h" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Lokacija" class="control-label"></label>
+                <input asp-for="Lokacija" class="form-control" />
+                <span asp-validation-for="Lokacija" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Datum_proizvodnje" class="control-label"></label>
+                <input asp-for="Datum_proizvodnje" class="form-control" />
+                <span asp-validation-for="Datum_proizvodnje" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
