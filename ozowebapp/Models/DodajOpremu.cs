@@ -20,11 +20,11 @@ namespace ozowebapp.Models
         public float Duljina_Koristenja_u_h { get; set; }
         [Required(ErrorMessage = "Ne smije biti prazno")]
         public string Lokacija { get; set; }
-        [Required(ErrorMessage = "Ne smije biti prazno")]
+        
         public string Datum_proizvodnje { get; set; }
         
-        public int Usluga_ID { get; set; }
-        public int Natjecaj_ID { get; set; }
+        public int? Usluga_ID { get; set; }
+        public int? Natjecaj_ID { get; set; }
 
     }
 }
