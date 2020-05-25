@@ -1,0 +1,77 @@
+﻿@model IEnumerable<ozowebapp.Models.DodajOpremu>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Oprema</h2>
+
+<p>
+    <a asp-action="Create"><button type="button" class="btn btn-primary float-lg-left">Nova oprema</button></a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Naziv)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Kolicina)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cijena)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Duljina_Koristenja_u_h)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Lokacija)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Datum_proizvodnje)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Usluga_ID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Natjecaj_ID)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Naziv)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Kolicina)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cijena)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Duljina_Koristenja_u_h)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Lokacija)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Datum_proizvodnje)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Usluga_ID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Natjecaj_ID)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.ID"><button type="button" class="btn btn-primary float-lg-left">Izmjena</button></a> |
+                <a asp-action="Details" asp-route-id="@item.ID"><button type="button" class="btn btn-primary float-lg-left">Detalji</button></a> |
+                <a asp-action="Delete" asp-route-id="@item.ID"><button type="submit" class="btn btn-warning">Izbriši</button></a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
