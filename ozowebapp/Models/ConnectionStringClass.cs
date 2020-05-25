@@ -14,5 +14,6 @@ namespace ozowebapp.Models
         }
 
         public DbSet<DodajOpremu> Oprema { get; set; }
+        public DbSet<Zanimanje> Zanimanje { get; set; }
     }
 }
