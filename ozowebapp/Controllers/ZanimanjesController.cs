@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ozowebapp.Models;
+using ReflectionIT.Mvc.Paging;
 
 namespace ozowebapp.Controllers
 {
@@ -19,9 +20,11 @@ namespace ozowebapp.Controllers
         }
 
         // GET: Zanimanjes
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int page= 1)
         {
-            return View(await _context.Zanimanje.ToListAsync());
+            var query = _context.Zanimanje.AsNoTracking().OrderBy(s => s.ID);
+            var model = await PagingList.CreateAsync(query, 5, page);
+            return View(model);
         }
 
         // GET: Zanimanjes/Details/5

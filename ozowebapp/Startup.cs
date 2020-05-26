@@ -10,7 +10,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using ozowebapp.Models;
 using Microsoft.EntityFrameworkCore;
-
+using ReflectionIT.Mvc.Paging;
 
 namespace ozowebapp
 {
@@ -28,6 +28,7 @@ namespace ozowebapp
         {
             services.AddDbContext<ConnectionStringClass>(options => options.UseSqlServer(Configuration.GetConnectionString("MyConnection")));
             services.AddControllersWithViews();
+            services.AddPaging();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
