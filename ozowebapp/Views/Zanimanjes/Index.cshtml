@@ -1,5 +1,7 @@
 ﻿@model IEnumerable<ozowebapp.Models.Zanimanje>
-
+@*@model ReflectionIT.Mvc.Paging.PagingList<ozowebapp.Models.Zanimanje>
+@using ReflectionIT.Mvc.Paging
+@addTagHelper*,ReflectionIt.Mvc.Paging*@
 @{
     ViewData["Title"] = "Index";
 }
@@ -8,6 +10,12 @@
 
 <p>
     <a asp-action="Create">Napravi novi</a>
+</p>
+<p>
+    @using (Html.BeginForm("Index", "Zanimanjes", FormMethod.Get))
+    {
+    @Html.TextBox("search")<input type="submit" value="Search"/>
+    }
 </p>
 <table class="table">
     <thead>

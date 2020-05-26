@@ -9,6 +9,12 @@
 <p>
     <a asp-action="Create"><button type="button" class="btn btn-primary float-lg-left">Nova oprema</button></a>
 </p>
+<p>
+    @using (Html.BeginForm("Index", "IndexOprema", FormMethod.Get))
+    {
+        @Html.TextBox("search")<input type="submit" value="Search" />
+    }
+</p>
 <table class="table">
     <thead>
         <tr>
@@ -30,12 +36,12 @@
             <th>
                 @Html.DisplayNameFor(model => model.Datum_proizvodnje)
             </th>
-            <th>
+            @*<th>
                 @Html.DisplayNameFor(model => model.Usluga_ID)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Natjecaj_ID)
-            </th>
+            </th>*@
             <th></th>
         </tr>
     </thead>
@@ -61,12 +67,12 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.Datum_proizvodnje)
                 </td>
-                <td>
+                @*<td>
                     @Html.DisplayFor(modelItem => item.Usluga_ID)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Natjecaj_ID)
-                </td>
+                </td>*@
                 <td>
                     <a asp-action="Edit" asp-route-id="@item.ID"><button type="button" class="btn btn-primary float-lg-left">Izmjena</button></a> |
                     <a asp-action="Details" asp-route-id="@item.ID"><button type="button" class="btn btn-primary float-lg-left">Detalji</button></a> |

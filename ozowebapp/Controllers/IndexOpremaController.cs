@@ -20,11 +20,20 @@ namespace ozowebapp.Controllers
         }
 
         // GET: IndexOprema
-        public async Task<IActionResult> Index(int page=1)
+        public async Task<IActionResult> Index(string search,int page=1)
         {
-            var query = _context.Oprema.AsNoTracking().OrderBy(s => s.ID);
-            var model = await PagingList.CreateAsync(query, 5, page);
-            return View(model);
+            if (!String.IsNullOrEmpty(search))
+            {
+                var query = _context.Oprema.AsNoTracking().Where(x => x.Naziv.Contains(search)).OrderBy(s => s.ID);
+                var model = await PagingList.CreateAsync(query, 5, page);
+                return View(model);
+            }
+            else
+            {
+                var query = _context.Oprema.AsNoTracking().OrderBy(s => s.ID);
+                var model = await PagingList.CreateAsync(query, 5, page);
+                return View(model);
+            }
         }
 
         // GET: IndexOprema/Details/5
