@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -23,7 +24,7 @@ namespace ozowebapp.Models
         public double? Duljina_Koristenja_u_h { get; set; }
         
         public string? Lokacija { get; set; }
-        
+        [DataType(DataType.Date)]
         public DateTime? Datum_proizvodnje { get; set; }
         
         public int? Usluga_ID { get; set; }
