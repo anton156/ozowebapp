@@ -66,7 +66,7 @@ namespace ozowebapp.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID,Naziv,Satnica,Opis")] Zanimanje zanimanje)
+        public async Task<IActionResult> Create([Bind("ID,Naziv,Satnica,Opis")] ZanimanjeClass zanimanje)
         {
             if (ModelState.IsValid)
             {
@@ -98,7 +98,7 @@ namespace ozowebapp.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ID,Naziv,Satnica,Opis")] Zanimanje zanimanje)
+        public async Task<IActionResult> Edit(int id, [Bind("ID,Naziv,Satnica,Opis")] ZanimanjeClass zanimanje)
         {
             if (id != zanimanje.ID)
             {

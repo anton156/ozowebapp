@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace ozowebapp.Models
 {
-    public class Zanimanje
+    public class ZanimanjeClass
     {
         [Key]
         public int ID { get; set; }

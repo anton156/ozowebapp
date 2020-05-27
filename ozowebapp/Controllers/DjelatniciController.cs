@@ -65,7 +65,7 @@ namespace ozowebapp.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID,Ime,Prezime,Zanimanje,Email,Datum_rodjenja,JMBG,Opis,Usluga_ID,Natjecaj_ID")] Djelatnik dodajDjelatnika)
+        public async Task<IActionResult> Create([Bind("ID,Ime,Prezime,Zanimanje,Email,Datum_rodjenja,JMBG,Opis,Usluga_ID,Natjecaj_ID")] DjelatnikClass dodajDjelatnika)
         {
             if (ModelState.IsValid)
             {
@@ -97,7 +97,7 @@ namespace ozowebapp.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ID,Ime,Prezime,Zanimanje,Email,Datum_rodjenja,JMBG,Opis,Usluga_ID,Natjecaj_ID")] Djelatnik dodajDjelatnika)
+        public async Task<IActionResult> Edit(int id, [Bind("ID,Ime,Prezime,Zanimanje,Email,Datum_rodjenja,JMBG,Opis,Usluga_ID,Natjecaj_ID")] DjelatnikClass dodajDjelatnika)
         {
             if (id != dodajDjelatnika.ID)
             {
