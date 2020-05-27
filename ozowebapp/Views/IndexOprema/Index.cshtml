@@ -82,6 +82,8 @@
         }
     </tbody>
 </table>
-<nav aria-label="Oprema Paging" text-align: center>
-    @await this.Component.InvokeAsync("Pager", new { pagingList = this.Model })
+<nav aria-label="Oprema Paging">
+    <div class="text-center">
+        @await this.Component.InvokeAsync("Pager", new { pagingList = this.Model })
+    </div>
 </nav>

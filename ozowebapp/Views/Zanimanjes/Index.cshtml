@@ -54,5 +54,7 @@
     </tbody>
 </table>
 <nav aria-label="Oprema Paging" text-align: center>
+    <div class="text-center">
     @await this.Component.InvokeAsync("Pager", new { pagingList = this.Model })
+        </div>
 </nav>
