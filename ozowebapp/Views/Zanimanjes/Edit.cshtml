@@ -4,7 +4,7 @@
     ViewData["Title"] = "Izmjena";
 }
 
-<h2>Izmjena</h2>
+<h2 style="margin-top:50px;">Izmjena</h2>
 
 
 <hr />
@@ -28,15 +28,18 @@
                 <input asp-for="Opis" class="form-control" />
                 <span asp-validation-for="Opis" class="text-danger"></span>
             </div>
+            <br />
+
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-default" />
+                <input type="submit" value="Spremi" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    
+    <a asp-action="Index">Natrag na popis</a>
+
 </div>
 
 @section Scripts {

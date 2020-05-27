@@ -4,7 +4,7 @@
     ViewData["Title"] = "Napravi";
 }
 
-<h2>Napravi</h2>
+<h2 style="margin-top:50px;">Napravi</h2>
 
 
 <hr />
@@ -27,16 +27,21 @@
                 <input asp-for="Opis" class="form-control" />
                 <span asp-validation-for="Opis" class="text-danger"></span>
             </div>
+            <br />
+
             <div class="form-group">
-                <input type="submit" value="Napravi" class="btn btn-default" />
+                <input type="submit" value="Napravi" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    
+    <a asp-action="Index">Natrag na popis</a>
 </div>
+<br />
+<br />
+<br />
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

@@ -6,7 +6,7 @@
     ViewData["Title"] = "Index";
 }
 
-<h2>Index</h2>
+<h2 style="margin-top:50px;">Index</h2>
 
 <p>
     <a asp-action="Create"><button type="button" class="btn btn-primary float-lg-left">Novo zanimanje</button></a>
@@ -14,7 +14,7 @@
 <p>
     @using (Html.BeginForm("Index", "Zanimanjes", FormMethod.Get))
     {
-    @Html.TextBox("search")<input type="submit" value="Traži"/>
+    @Html.TextBox("search")<input style="margin-left:4px;" type="submit" value="Traži"/>
     }
 </p>
 <table class="table">
@@ -45,8 +45,8 @@
                 @Html.DisplayFor(modelItem => item.Opis)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.ID"><button type="button" class="btn btn-primary float-lg-left">Izmjena</button></a> |
-                <a asp-action="Details" asp-route-id="@item.ID"><button type="button" class="btn btn-primary float-lg-left">Detalji</button></a> |
+                <a asp-action="Edit" asp-route-id="@item.ID"><button type="button" class="btn btn-primary float-lg-left">Izmjena</button></a> &nbsp
+                <a asp-action="Details" asp-route-id="@item.ID"><button type="button" class="btn btn-primary float-lg-left">Detalji</button></a> &nbsp
                 <a asp-action="Delete" asp-route-id="@item.ID"><button type="submit" class="btn btn-warning">Izbriši</button></a>
             </td>
         </tr>
