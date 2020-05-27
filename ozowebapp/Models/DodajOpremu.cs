@@ -19,11 +19,13 @@ namespace ozowebapp.Models
         [Range(0, 99999, ErrorMessage = "Ne smije")]
         [Required(ErrorMessage = "Ne smije biti prazno")]
         public double? Cijena { get; set; }
+        [Display(Name ="Duljina korištenja u h")]
         [Range(0, 99999, ErrorMessage = "Ne smije")]
         [Required(ErrorMessage = "Ne smije biti prazno")]
         public double? Duljina_Koristenja_u_h { get; set; }
         
         public string? Lokacija { get; set; }
+        [Display(Name ="Datum proizvodnje")]
         [DataType(DataType.Date)]
         public DateTime? Datum_proizvodnje { get; set; }
         
