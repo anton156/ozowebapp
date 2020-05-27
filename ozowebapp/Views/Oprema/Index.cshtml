@@ -1,4 +1,4 @@
-﻿@model IEnumerable<ozowebapp.Models.DodajOpremu>
+﻿@model IEnumerable<ozowebapp.Models.Oprema>
 
 @{
     ViewData["Title"] = "Index";
@@ -10,7 +10,7 @@
     <a asp-action="Create"><button type="button" class="btn btn-primary float-lg-left">Nova oprema</button></a>
 </p>
 <p>
-    @using (Html.BeginForm("Index", "IndexOprema", FormMethod.Get))
+    @using (Html.BeginForm("Index", "Oprema", FormMethod.Get))
     {
         @Html.TextBox("search")<input style="margin-left:4px;" type="submit" value="Pretraži" />
     }

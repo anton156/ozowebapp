@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ozowebapp.Models
 {
-    public class DodajDjelatnika
+    public class Djelatnik
     {
         [Key]
         public int ID { get; set; }

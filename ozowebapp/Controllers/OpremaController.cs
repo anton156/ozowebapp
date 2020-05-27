@@ -10,11 +10,11 @@ using ReflectionIT.Mvc.Paging;
 
 namespace ozowebapp.Controllers
 {
-    public class IndexOpremaController : Controller
+    public class OpremaController : Controller
     {
         private readonly ConnectionStringClass _context;
 
-        public IndexOpremaController(ConnectionStringClass context)
+        public OpremaController(ConnectionStringClass context)
         {
             _context = context;
         }
@@ -65,7 +65,7 @@ namespace ozowebapp.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID,Naziv,Kolicina,Cijena,Duljina_Koristenja_u_h,Lokacija,Datum_proizvodnje,Usluga_ID,Natjecaj_ID")] DodajOpremu dodajOpremu)
+        public async Task<IActionResult> Create([Bind("ID,Naziv,Kolicina,Cijena,Duljina_Koristenja_u_h,Lokacija,Datum_proizvodnje,Usluga_ID,Natjecaj_ID")] Oprema dodajOpremu)
         {
             if (ModelState.IsValid)
             {
@@ -97,7 +97,7 @@ namespace ozowebapp.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ID,Naziv,Kolicina,Cijena,Duljina_Koristenja_u_h,Lokacija,Datum_proizvodnje,Usluga_ID,Natjecaj_ID")] DodajOpremu dodajOpremu)
+        public async Task<IActionResult> Edit(int id, [Bind("ID,Naziv,Kolicina,Cijena,Duljina_Koristenja_u_h,Lokacija,Datum_proizvodnje,Usluga_ID,Natjecaj_ID")] Oprema dodajOpremu)
         {
             if (id != dodajOpremu.ID)
             {

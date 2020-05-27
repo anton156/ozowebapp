@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ozowebapp.Models
 {
-    public class DodajOpremu
+    public class Oprema
     {
         [Key]
         public int ID { get; set; }

@@ -10,33 +10,34 @@ using ReflectionIT.Mvc.Paging;
 
 namespace ozowebapp.Controllers
 {
-    public class DodajDjelatnikasController : Controller
+    public class ZanimanjaController : Controller
     {
         private readonly ConnectionStringClass _context;
 
-        public DodajDjelatnikasController(ConnectionStringClass context)
+        public ZanimanjaController(ConnectionStringClass context)
         {
             _context = context;
         }
 
-        // GET: DodajDjelatnikas
-        public async Task<IActionResult> Index(string search, int page = 1)
+        // GET: Zanimanjes
+        public async Task<IActionResult> Index( string search,int page= 1)
         {
+          
             if (!String.IsNullOrEmpty(search))
             {
-                var query = _context.Djelatnik.AsNoTracking().Where(x => x.Ime.Contains(search)).OrderBy(s => s.ID);
+                var query = _context.Zanimanje.AsNoTracking().Where(x => x.Naziv.Contains(search)).OrderBy(s => s.ID);
                 var model = await PagingList.CreateAsync(query, 5, page);
                 return View(model);
             }
             else
             {
-                var query = _context.Djelatnik.AsNoTracking().OrderBy(s => s.ID);
+                var query = _context.Zanimanje.AsNoTracking().OrderBy(s => s.ID);
                 var model = await PagingList.CreateAsync(query, 5, page);
                 return View(model);
             }
         }
 
-        // GET: DodajDjelatnikas/Details/5
+        // GET: Zanimanjes/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -44,39 +45,39 @@ namespace ozowebapp.Controllers
                 return NotFound();
             }
 
-            var dodajDjelatnika = await _context.Djelatnik
+            var zanimanje = await _context.Zanimanje
                 .FirstOrDefaultAsync(m => m.ID == id);
-            if (dodajDjelatnika == null)
+            if (zanimanje == null)
             {
                 return NotFound();
             }
 
-            return View(dodajDjelatnika);
+            return View(zanimanje);
         }
 
-        // GET: DodajDjelatnikas/Create
+        // GET: Zanimanjes/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: DodajDjelatnikas/Create
+        // POST: Zanimanjes/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID,Ime,Prezime,Zanimanje,Email,Datum_rodjenja,JMBG,Opis,Usluga_ID,Natjecaj_ID")] DodajDjelatnika dodajDjelatnika)
+        public async Task<IActionResult> Create([Bind("ID,Naziv,Satnica,Opis")] Zanimanje zanimanje)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(dodajDjelatnika);
+                _context.Add(zanimanje);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(dodajDjelatnika);
+            return View(zanimanje);
         }
 
-        // GET: DodajDjelatnikas/Edit/5
+        // GET: Zanimanjes/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -84,22 +85,22 @@ namespace ozowebapp.Controllers
                 return NotFound();
             }
 
-            var dodajDjelatnika = await _context.Djelatnik.FindAsync(id);
-            if (dodajDjelatnika == null)
+            var zanimanje = await _context.Zanimanje.FindAsync(id);
+            if (zanimanje == null)
             {
                 return NotFound();
             }
-            return View(dodajDjelatnika);
+            return View(zanimanje);
         }
 
-        // POST: DodajDjelatnikas/Edit/5
+        // POST: Zanimanjes/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ID,Ime,Prezime,Zanimanje,Email,Datum_rodjenja,JMBG,Opis,Usluga_ID,Natjecaj_ID")] DodajDjelatnika dodajDjelatnika)
+        public async Task<IActionResult> Edit(int id, [Bind("ID,Naziv,Satnica,Opis")] Zanimanje zanimanje)
         {
-            if (id != dodajDjelatnika.ID)
+            if (id != zanimanje.ID)
             {
                 return NotFound();
             }
@@ -108,12 +109,12 @@ namespace ozowebapp.Controllers
             {
                 try
                 {
-                    _context.Update(dodajDjelatnika);
+                    _context.Update(zanimanje);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!DodajDjelatnikaExists(dodajDjelatnika.ID))
+                    if (!ZanimanjeExists(zanimanje.ID))
                     {
                         return NotFound();
                     }
@@ -124,10 +125,10 @@ namespace ozowebapp.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(dodajDjelatnika);
+            return View(zanimanje);
         }
 
-        // GET: DodajDjelatnikas/Delete/5
+        // GET: Zanimanjes/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -135,30 +136,30 @@ namespace ozowebapp.Controllers
                 return NotFound();
             }
 
-            var dodajDjelatnika = await _context.Djelatnik
+            var zanimanje = await _context.Zanimanje
                 .FirstOrDefaultAsync(m => m.ID == id);
-            if (dodajDjelatnika == null)
+            if (zanimanje == null)
             {
                 return NotFound();
             }
 
-            return View(dodajDjelatnika);
+            return View(zanimanje);
         }
 
-        // POST: DodajDjelatnikas/Delete/5
+        // POST: Zanimanjes/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var dodajDjelatnika = await _context.Djelatnik.FindAsync(id);
-            _context.Djelatnik.Remove(dodajDjelatnika);
+            var zanimanje = await _context.Zanimanje.FindAsync(id);
+            _context.Zanimanje.Remove(zanimanje);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool DodajDjelatnikaExists(int id)
+        private bool ZanimanjeExists(int id)
         {
-            return _context.Djelatnik.Any(e => e.ID == id);
+            return _context.Zanimanje.Any(e => e.ID == id);
         }
     }
 }

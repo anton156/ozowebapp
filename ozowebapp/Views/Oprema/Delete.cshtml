@@ -1,13 +1,14 @@
-﻿@model ozowebapp.Models.DodajOpremu
+﻿@model ozowebapp.Models.Oprema
 
 @{
-    ViewData["Title"] = "Detalji";
+    ViewData["Title"] = "Izbriši";
 }
 
 <h2 style="margin-top:50px;">Oprema</h2>
 
+<h3>Obriši opremu:</h3>
 <div>
-    <h4>Detaljno</h4>
+    
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -59,9 +60,11 @@
             @Html.DisplayFor(model => model.Natjecaj_ID)
         </dd>
     </dl>
-</div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model.ID"><input type="submit" value="Uredi" class="btn btn-primary" /></a> &nbsp
-    <a asp-action="Index">Natrag na popis</a>
+    
+    <form asp-action="Obriši">
+        <input type="hidden" asp-for="ID" />
+        <input type="submit" value="Obriši" class="btn btn-warning" /> &nbsp
+        <a asp-action="Index">Natrag na popis</a>
 
+    </form>
 </div>
