@@ -4,9 +4,9 @@
     ViewData["Title"] = "Delete";
 }
 
-<h2>Djelatnici</h2>
+<h2 style="margin-top:50px;">Djelatnici</h2>
 
-<h3>Obriši</h3>
+<h3>Obriši djelatnika</h3>
 <div>
     <hr />
     <dl class="dl-horizontal">
@@ -68,7 +68,7 @@
     
     <form asp-action="Obriši">
         <input type="hidden" asp-for="ID" />
-        <input type="submit" value="Delete" class="btn btn-default" /> |
+        <input type="submit" value="Obriši" class="btn btn-warning" /> &nbsp
         <a asp-action="Index">Natrag na popis</a>
     </form>
 </div>

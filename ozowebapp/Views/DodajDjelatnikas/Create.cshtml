@@ -4,9 +4,9 @@
     ViewData["Title"] = "Create";
 }
 
-<h2>Djelatnici</h2>
+<h2 style="margin-top:50px;">Djelatnici</h2>
 
-<h4>Dodaj</h4>
+<h4>Dodaj novog djelatnika:</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -57,8 +57,10 @@
                 <input asp-for="Natjecaj_ID" class="form-control" />
                 <span asp-validation-for="Natjecaj_ID" class="text-danger"></span>
             </div>
+            <br />
+
             <div class="form-group">
-                <input type="submit" value="Dodaj" class="btn btn-default" />
+                <input type="submit" value="Dodaj" class="btn btn-primary" />
             </div>
         </form>
     </div>
@@ -67,6 +69,10 @@
 <div>
     <a asp-action="Index">Natrag na popis</a>
 </div>
+<br />
+<br />
+<br />
+
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

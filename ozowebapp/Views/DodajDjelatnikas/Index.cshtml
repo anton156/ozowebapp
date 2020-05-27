@@ -4,7 +4,7 @@
     ViewData["Title"] = "Index";
 }
 
-<h2>Djelatnici</h2>
+<h2 style="margin-top:50px;">Djelatnici</h2>
 
 <p>
     <a asp-action="Create"><button type="button" class="btn btn-primary float-lg-left">Novi djelatnik</button></a>
@@ -12,7 +12,7 @@
 <p>
     @using (Html.BeginForm("Index", "Dodajdjelatnikas", FormMethod.Get))
     {
-        @Html.TextBox("search")<input type="submit" value="Pretraži" />
+        @Html.TextBox("search")<input style="margin-left:4px;" type="submit" value="Pretraži" />
     }
 </p>
 <table class="table">
@@ -79,11 +79,11 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.Natjecaj_ID)
                 </td>*@
-                <td>
-                    <a asp-action="Edit" asp-route-id="@item.ID"><button type="button" class="btn btn-primary float-lg-left">Uredi</button></a> |
-                    <a asp-action="Details" asp-route-id="@item.ID"><button type="button" class="btn btn-primary float-lg-left">Detaljno</button></a> |
-                    <a asp-action="Delete" asp-route-id="@item.ID"><button type="submit" class="btn btn-warning">Obriši</button></a>
-                </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.ID"><button type="button" class="btn btn-primary float-lg-left">Uredi</button></a> &nbsp
+                <a asp-action="Details" asp-route-id="@item.ID"><button type="button" class="btn btn-primary float-lg-left">Detaljno</button></a>&nbsp
+                <a asp-action="Delete" asp-route-id="@item.ID"><button type="submit" class="btn btn-warning">Obriši</button></a>
+            </td>
             </tr>
         }
     </tbody>
