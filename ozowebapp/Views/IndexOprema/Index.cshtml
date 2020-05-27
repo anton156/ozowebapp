@@ -12,7 +12,7 @@
 <p>
     @using (Html.BeginForm("Index", "IndexOprema", FormMethod.Get))
     {
-        @Html.TextBox("search")<input type="submit" value="Search" />
+        @Html.TextBox("search")<input type="submit" value="Pretraži" />
     }
 </p>
 <table class="table">
@@ -74,9 +74,9 @@
                     @Html.DisplayFor(modelItem => item.Natjecaj_ID)
                 </td>*@
                 <td>
-                    <a asp-action="Edit" asp-route-id="@item.ID"><button type="button" class="btn btn-primary float-lg-left">Izmjena</button></a> |
-                    <a asp-action="Details" asp-route-id="@item.ID"><button type="button" class="btn btn-primary float-lg-left">Detalji</button></a> |
-                    <a asp-action="Delete" asp-route-id="@item.ID"><button type="submit" class="btn btn-warning">Izbriši</button></a>
+                    <a asp-action="Edit" asp-route-id="@item.ID"><button type="button" class="btn btn-primary float-lg-left">Uredi</button></a> |
+                    <a asp-action="Details" asp-route-id="@item.ID"><button type="button" class="btn btn-primary float-lg-left">Detaljno</button></a> |
+                    <a asp-action="Delete" asp-route-id="@item.ID"><button type="submit" class="btn btn-warning">Obriši</button></a>
                 </td>
             </tr>
         }
