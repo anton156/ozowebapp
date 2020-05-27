@@ -6,25 +6,37 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ozowebapp.Models;
+using ReflectionIT.Mvc.Paging;
 
 namespace ozowebapp.Controllers
 {
-    public class DodajDjelatnikaController : Controller
+    public class DodajDjelatnikasController : Controller
     {
         private readonly ConnectionStringClass _context;
 
-        public DodajDjelatnikaController(ConnectionStringClass context)
+        public DodajDjelatnikasController(ConnectionStringClass context)
         {
             _context = context;
         }
 
-        // GET: DodajDjelatnika
-        public async Task<IActionResult> Index()
+        // GET: DodajDjelatnikas
+        public async Task<IActionResult> Index(string search, int page = 1)
         {
-            return View(await _context.Djelatnik.ToListAsync());
+            if (!String.IsNullOrEmpty(search))
+            {
+                var query = _context.Djelatnik.AsNoTracking().Where(x => x.Ime.Contains(search)).OrderBy(s => s.ID);
+                var model = await PagingList.CreateAsync(query, 5, page);
+                return View(model);
+            }
+            else
+            {
+                var query = _context.Djelatnik.AsNoTracking().OrderBy(s => s.ID);
+                var model = await PagingList.CreateAsync(query, 5, page);
+                return View(model);
+            }
         }
 
-        // GET: DodajDjelatnika/Details/5
+        // GET: DodajDjelatnikas/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -42,13 +54,13 @@ namespace ozowebapp.Controllers
             return View(dodajDjelatnika);
         }
 
-        // GET: DodajDjelatnika/Create
+        // GET: DodajDjelatnikas/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: DodajDjelatnika/Create
+        // POST: DodajDjelatnikas/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -64,7 +76,7 @@ namespace ozowebapp.Controllers
             return View(dodajDjelatnika);
         }
 
-        // GET: DodajDjelatnika/Edit/5
+        // GET: DodajDjelatnikas/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -80,7 +92,7 @@ namespace ozowebapp.Controllers
             return View(dodajDjelatnika);
         }
 
-        // POST: DodajDjelatnika/Edit/5
+        // POST: DodajDjelatnikas/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -115,7 +127,7 @@ namespace ozowebapp.Controllers
             return View(dodajDjelatnika);
         }
 
-        // GET: DodajDjelatnika/Delete/5
+        // GET: DodajDjelatnikas/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -133,7 +145,7 @@ namespace ozowebapp.Controllers
             return View(dodajDjelatnika);
         }
 
-        // POST: DodajDjelatnika/Delete/5
+        // POST: DodajDjelatnikas/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
