@@ -22,7 +22,7 @@ namespace ozowebapp.Models
         [Display(Name = "Datum rođenja")]
         [DataType(DataType.Date)]
         public DateTime? Datum_rodjenja { get; set; }
-        [Range(0, 99999, ErrorMessage = "Ne smije")]
+        [Range(0, 9999999999999, ErrorMessage = "Ne smije")]
         [Required(ErrorMessage = "Ne smije biti prazno")]
         public string? JMBG { get; set; }
 
