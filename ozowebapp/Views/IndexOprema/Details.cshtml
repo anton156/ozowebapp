@@ -4,7 +4,7 @@
     ViewData["Title"] = "Detalji";
 }
 
-<h2>Oprema</h2>
+<h2 style="margin-top:50px;">Oprema</h2>
 
 <div>
     <h4>Detaljno</h4>
@@ -61,6 +61,7 @@
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.ID">Uredi</a> |
-    
+    <a asp-action="Edit" asp-route-id="@Model.ID"><input type="submit" value="Uredi" class="btn btn-primary" /></a> &nbsp
+    <a asp-action="Index">Natrag na popis</a>
+
 </div>

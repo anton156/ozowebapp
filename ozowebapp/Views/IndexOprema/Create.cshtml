@@ -4,8 +4,8 @@
     ViewData["Title"] = "Napravi";
 }
 
-<h2>Oprema</h2>
-<h4>Dodaj</h4>
+<h2 style="margin-top:50px;">Oprema</h2>
+<h4>Dodaj novu opremu:</h4>
 
 
 <hr />
@@ -44,25 +44,31 @@
                 <span asp-validation-for="Datum_proizvodnje" class="text-danger"></span>
             </div>
             @*<div class="form-group">
-                <label asp-for="Usluga_ID" class="control-label"></label>
-                <input asp-for="Usluga_ID" class="form-control" />
-                <span asp-validation-for="Usluga_ID" class="text-danger"></span>
-            </div>
+                    <label asp-for="Usluga_ID" class="control-label"></label>
+                    <input asp-for="Usluga_ID" class="form-control" />
+                    <span asp-validation-for="Usluga_ID" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Natjecaj_ID" class="control-label"></label>
+                    <input asp-for="Natjecaj_ID" class="form-control" />
+                    <span asp-validation-for="Natjecaj_ID" class="text-danger"></span>
+                </div>*@
+            <br />
+
             <div class="form-group">
-                <label asp-for="Natjecaj_ID" class="control-label"></label>
-                <input asp-for="Natjecaj_ID" class="form-control" />
-                <span asp-validation-for="Natjecaj_ID" class="text-danger"></span>
-            </div>*@
-            <div class="form-group">
-                <input type="submit" value="Dodaj" class="btn btn-default" />
+                <input type="submit" value="Dodaj" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    
+    <a asp-action="Index">Natrag na popis</a>
 </div>
+<br />
+<br />
+<br />
+
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
