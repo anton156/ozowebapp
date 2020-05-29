@@ -1,13 +1,13 @@
 ﻿@model ozowebapp.Models.ZanimanjeClass
 
 @{
-    ViewData["Title"] = "Detalji";
+    ViewData["Title"] = "Details";
 }
 
-<h2 style="margin-top:50px;">Detalji</h2>
+<h2 style="margin-top:50px;">Zanimanja</h2>
 
 <div>
-
+    <h4>Detalji</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -30,11 +30,7 @@
         </dd>
     </dl>
 </div>
-<br />
-
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.ID"><input type="submit" value="Uredi" class="btn btn-primary" /></a> &nbsp
+    <a asp-action="Edit" asp-route-id="@Model.ZanimanjeClassID"><input type="submit" value="Uredi" class="btn btn-primary" /></a> &nbsp
     <a asp-action="Index">Natrag na popis</a>
-
-
 </div>

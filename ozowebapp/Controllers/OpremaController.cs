@@ -6,7 +6,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ozowebapp.Models;
-using ReflectionIT.Mvc.Paging;
 
 namespace ozowebapp.Controllers
 {
@@ -19,24 +18,13 @@ namespace ozowebapp.Controllers
             _context = context;
         }
 
-        // GET: IndexOprema
-        public async Task<IActionResult> Index(string search,int page=1)
+        // GET: Oprema
+        public async Task<IActionResult> Index()
         {
-            if (!String.IsNullOrEmpty(search))
-            {
-                var query = _context.Oprema.AsNoTracking().Where(x => x.Naziv.Contains(search)).OrderBy(s => s.ID);
-                var model = await PagingList.CreateAsync(query, 5, page);
-                return View(model);
-            }
-            else
-            {
-                var query = _context.Oprema.AsNoTracking().OrderBy(s => s.ID);
-                var model = await PagingList.CreateAsync(query, 5, page);
-                return View(model);
-            }
+            return View(await _context.Oprema.ToListAsync());
         }
 
-        // GET: IndexOprema/Details/5
+        // GET: Oprema/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -44,39 +32,39 @@ namespace ozowebapp.Controllers
                 return NotFound();
             }
 
-            var dodajOpremu = await _context.Oprema
-                .FirstOrDefaultAsync(m => m.ID == id);
-            if (dodajOpremu == null)
+            var opremaClass = await _context.Oprema
+                .FirstOrDefaultAsync(m => m.OpremaClassID == id);
+            if (opremaClass == null)
             {
                 return NotFound();
             }
 
-            return View(dodajOpremu);
+            return View(opremaClass);
         }
 
-        // GET: IndexOprema/Create
+        // GET: Oprema/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: IndexOprema/Create
+        // POST: Oprema/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID,Naziv,Kolicina,Cijena,Duljina_Koristenja_u_h,Lokacija,Datum_proizvodnje,Usluga_ID,Natjecaj_ID")] OpremaClass dodajOpremu)
+        public async Task<IActionResult> Create([Bind("OpremaClassID,Naziv,Kolicina,Cijena,Duljina_Koristenja_u_h,Lokacija,Datum_proizvodnje")] OpremaClass opremaClass)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(dodajOpremu);
+                _context.Add(opremaClass);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(dodajOpremu);
+            return View(opremaClass);
         }
 
-        // GET: IndexOprema/Edit/5
+        // GET: Oprema/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -84,22 +72,22 @@ namespace ozowebapp.Controllers
                 return NotFound();
             }
 
-            var dodajOpremu = await _context.Oprema.FindAsync(id);
-            if (dodajOpremu == null)
+            var opremaClass = await _context.Oprema.FindAsync(id);
+            if (opremaClass == null)
             {
                 return NotFound();
             }
-            return View(dodajOpremu);
+            return View(opremaClass);
         }
 
-        // POST: IndexOprema/Edit/5
+        // POST: Oprema/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ID,Naziv,Kolicina,Cijena,Duljina_Koristenja_u_h,Lokacija,Datum_proizvodnje,Usluga_ID,Natjecaj_ID")] OpremaClass dodajOpremu)
+        public async Task<IActionResult> Edit(int id, [Bind("OpremaClassID,Naziv,Kolicina,Cijena,Duljina_Koristenja_u_h,Lokacija,Datum_proizvodnje")] OpremaClass opremaClass)
         {
-            if (id != dodajOpremu.ID)
+            if (id != opremaClass.OpremaClassID)
             {
                 return NotFound();
             }
@@ -108,12 +96,12 @@ namespace ozowebapp.Controllers
             {
                 try
                 {
-                    _context.Update(dodajOpremu);
+                    _context.Update(opremaClass);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!DodajOpremuExists(dodajOpremu.ID))
+                    if (!OpremaClassExists(opremaClass.OpremaClassID))
                     {
                         return NotFound();
                     }
@@ -124,10 +112,10 @@ namespace ozowebapp.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(dodajOpremu);
+            return View(opremaClass);
         }
 
-        // GET: IndexOprema/Delete/5
+        // GET: Oprema/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -135,30 +123,30 @@ namespace ozowebapp.Controllers
                 return NotFound();
             }
 
-            var dodajOpremu = await _context.Oprema
-                .FirstOrDefaultAsync(m => m.ID == id);
-            if (dodajOpremu == null)
+            var opremaClass = await _context.Oprema
+                .FirstOrDefaultAsync(m => m.OpremaClassID == id);
+            if (opremaClass == null)
             {
                 return NotFound();
             }
 
-            return View(dodajOpremu);
+            return View(opremaClass);
         }
 
-        // POST: IndexOprema/Delete/5
+        // POST: Oprema/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var dodajOpremu = await _context.Oprema.FindAsync(id);
-            _context.Oprema.Remove(dodajOpremu);
+            var opremaClass = await _context.Oprema.FindAsync(id);
+            _context.Oprema.Remove(opremaClass);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool DodajOpremuExists(int id)
+        private bool OpremaClassExists(int id)
         {
-            return _context.Oprema.Any(e => e.ID == id);
+            return _context.Oprema.Any(e => e.OpremaClassID == id);
         }
     }
 }

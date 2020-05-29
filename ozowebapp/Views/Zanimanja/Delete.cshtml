@@ -1,14 +1,14 @@
 ﻿@model ozowebapp.Models.ZanimanjeClass
 
 @{
-    ViewData["Title"] = "Izbriši";
+    ViewData["Title"] = "Delete";
 }
 
-<h2 style="margin-top:50px;">Izbriši</h2>
+<h2 style="margin-top:50px;">Zanimanja</h2>
 
-<h3>Jeste li sigurni da želite izbrisati?</h3>
+<h3>Izbriši zanimanje</h3>
 <div>
-    
+    <h4>Jeste li sigurni?</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -30,12 +30,10 @@
             @Html.DisplayFor(model => model.Opis)
         </dd>
     </dl>
-    <br />
+    
     <form asp-action="Delete">
-        <input type="hidden" asp-for="ID" />
-        <input type="submit" value="Izbriši" class="btn btn-warning" /> &nbsp
+        <input type="hidden" asp-for="ZanimanjeClassID" />
+        <input type="submit" value="Delete" class="btn btn-warning" /> &nbsp
         <a asp-action="Index">Natrag na popis</a>
-
-
     </form>
 </div>

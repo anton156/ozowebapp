@@ -4,17 +4,11 @@
     ViewData["Title"] = "Index";
 }
 
-<h2 style="margin-top:50px;">Oprema</h2>
+    <h2 style="margin-top:50px;">Oprema</h2>
 
-<p>
-    <a asp-action="Create"><button type="button" class="btn btn-primary float-lg-left">Nova oprema</button></a>
-</p>
-<p>
-    @using (Html.BeginForm("Index", "Oprema", FormMethod.Get))
-    {
-        @Html.TextBox("search")<input style="margin-left:4px;" type="submit" value="Pretraži" />
-    }
-</p>
+    <p>
+        <a asp-action="Create"><button type="button" class="btn btn-primary float-lg-left">Nova oprema</button></a>
+    </p>
 <table class="table">
     <thead>
         <tr>
@@ -36,54 +30,36 @@
             <th>
                 @Html.DisplayNameFor(model => model.Datum_proizvodnje)
             </th>
-            @*<th>
-                @Html.DisplayNameFor(model => model.Usluga_ID)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Natjecaj_ID)
-            </th>*@
             <th></th>
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Naziv)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Kolicina)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Cijena)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Duljina_Koristenja_u_h)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Lokacija)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Datum_proizvodnje)
-                </td>
-                @*<td>
-                    @Html.DisplayFor(modelItem => item.Usluga_ID)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Natjecaj_ID)
-                </td>*@
+@foreach (var item in Model) {
+        <tr>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.ID"><button type="button" class="btn btn-primary float-lg-left">Uredi</button></a>&nbsp
-                <a asp-action="Details" asp-route-id="@item.ID"><button type="button" class="btn btn-primary float-lg-left">Detaljno</button></a>&nbsp
-                <a asp-action="Delete" asp-route-id="@item.ID"><button type="submit" class="btn btn-warning">Obriši</button></a>
+                @Html.DisplayFor(modelItem => item.Naziv)
             </td>
-            </tr>
-        }
+            <td>
+                @Html.DisplayFor(modelItem => item.Kolicina)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cijena)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Duljina_Koristenja_u_h)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Lokacija)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Datum_proizvodnje)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.OpremaClassID"><button type="button" class="btn btn-primary float-lg-left">Uredi</button></a>&nbsp
+                <a asp-action="Details" asp-route-id="@item.OpremaClassID"><button type="button" class="btn btn-primary float-lg-left">Detaljno</button></a>&nbsp
+                <a asp-action="Delete" asp-route-id="@item.OpremaClassID"><button type="submit" class="btn btn-warning">Izbriši</button></a>
+            </td>
+        </tr>
+}
     </tbody>
 </table>
-<nav aria-label="Oprema Paging">
-    <div class="text-center">
-        @await this.Component.InvokeAsync("Pager", new { pagingList = this.Model })
-    </div>
-</nav>

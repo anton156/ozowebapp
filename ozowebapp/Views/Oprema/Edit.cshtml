@@ -1,18 +1,18 @@
 ﻿@model ozowebapp.Models.OpremaClass
 
 @{
-    ViewData["Title"] = "Izmjeni";
+    ViewData["Title"] = "Edit";
 }
 
 <h2 style="margin-top:50px;">Oprema</h2>
 
-<h4>Uredi:</h4>
+<h4>Uredi</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="ID" />
+            <input type="hidden" asp-for="OpremaClassID" />
             <div class="form-group">
                 <label asp-for="Naziv" class="control-label"></label>
                 <input asp-for="Naziv" class="form-control" />
@@ -43,16 +43,6 @@
                 <input asp-for="Datum_proizvodnje" class="form-control" />
                 <span asp-validation-for="Datum_proizvodnje" class="text-danger"></span>
             </div>
-            @*<div class="form-group">
-            <label asp-for="Usluga_ID" class="control-label"></label>
-            <input asp-for="Usluga_ID" class="form-control" />
-            <span asp-validation-for="Usluga_ID" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <label asp-for="Natjecaj_ID" class="control-label"></label>
-            <input asp-for="Natjecaj_ID" class="form-control" />
-            <span asp-validation-for="Natjecaj_ID" class="text-danger"></span>
-        </div>*@
             <br />
 
             <div class="form-group">

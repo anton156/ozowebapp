@@ -8,26 +8,17 @@ namespace ozowebapp.Models
 {
     public class DjelatnikClass
     {
-        [Key]
-        public int ID { get; set; }
-        [Required(ErrorMessage = "Ne smije biti prazno")]
+        public int DjelatnikClassID { get; set; }
         public string Ime { get; set; }
 
-        [Required(ErrorMessage = "Ne smije biti prazno")]
         public string Prezime { get; set; }
 
-        public string? Zanimanje { get; set; }
+        public int ZanimanjeClassID { get; set; }
+        public virtual ZanimanjeClass ZanimanjeClass { get; set; }
 
         public string? Email { get; set; }
-        [Display(Name = "Datum rođenja")]
-        [DataType(DataType.Date)]
         public DateTime? Datum_rodjenja { get; set; }
-        [Range(0, 9999999999999, ErrorMessage = "Ne smije")]
-        [Required(ErrorMessage = "Ne smije biti prazno")]
-        public string? JMBG { get; set; }
+        
 
-        public string? Opis { get; set; }
-        public int? Usluga_ID { get; set; }
-        public int? Natjecaj_ID { get; set; }
     }
 }

@@ -1,18 +1,18 @@
 ﻿@model ozowebapp.Models.ZanimanjeClass
 
 @{
-    ViewData["Title"] = "Izmjena";
+    ViewData["Title"] = "Edit";
 }
 
-<h2 style="margin-top:50px;">Izmjena</h2>
+    <h2 style="margin-top:50px;">Zanimanja</h2>
 
-
+<h4>Uredi</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="ID" />
+            <input type="hidden" asp-for="ZanimanjeClassID" />
             <div class="form-group">
                 <label asp-for="Naziv" class="control-label"></label>
                 <input asp-for="Naziv" class="form-control" />
@@ -39,7 +39,6 @@
 
 <div>
     <a asp-action="Index">Natrag na popis</a>
-
 </div>
 
 @section Scripts {

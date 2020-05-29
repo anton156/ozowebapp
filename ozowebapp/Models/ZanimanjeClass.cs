@@ -8,14 +8,12 @@ namespace ozowebapp.Models
 {
     public class ZanimanjeClass
     {
-        [Key]
-        public int ID { get; set; }
-        [Required(ErrorMessage = "Ne smije biti prazno")]
+        public int ZanimanjeClassID { get; set; }
         public string Naziv { get; set; }
-        [Range(0, 99999, ErrorMessage = "Ne smije")]
-        [Required(ErrorMessage = "Ne smije biti prazno")]
         public double? Satnica { get; set; }
 
         public string? Opis { get; set; }
+
+        public virtual ICollection<DjelatnikClass> Djelatnici { get; set; }
     }
 }

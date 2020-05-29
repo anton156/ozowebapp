@@ -1,22 +1,14 @@
 ﻿@model IEnumerable<ozowebapp.Models.ZanimanjeClass>
-@*@model ReflectionIT.Mvc.Paging.PagingList<ozowebapp.Models.Zanimanje>
-@using ReflectionIT.Mvc.Paging
-@addTagHelper*,ReflectionIt.Mvc.Paging*@
+
 @{
     ViewData["Title"] = "Index";
 }
 
-<h2 style="margin-top:50px;">Index</h2>
+    <h2 style="margin-top:50px;">Zanimanja</h2>
 
-<p>
-    <a asp-action="Create"><button type="button" class="btn btn-primary float-lg-left">Novo zanimanje</button></a>
-</p>
-<p>
-    @using (Html.BeginForm("Index", "Zanimanjes", FormMethod.Get))
-    {
-    @Html.TextBox("search")<input style="margin-left:4px;" type="submit" value="Traži"/>
-    }
-</p>
+    <p>
+        <a asp-action="Create"><button type="button" class="btn btn-primary float-lg-left">Novo zanimanje</button></a>
+    </p>
 <table class="table">
     <thead>
         <tr>
@@ -45,16 +37,11 @@
                 @Html.DisplayFor(modelItem => item.Opis)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.ID"><button type="button" class="btn btn-primary float-lg-left">Izmjena</button></a> &nbsp
-                <a asp-action="Details" asp-route-id="@item.ID"><button type="button" class="btn btn-primary float-lg-left">Detalji</button></a> &nbsp
-                <a asp-action="Delete" asp-route-id="@item.ID"><button type="submit" class="btn btn-warning">Izbriši</button></a>
+                <a asp-action="Edit" asp-route-id="@item.ZanimanjeClassID"><button type="button" class="btn btn-primary float-lg-left">Uredi</button></a> &nbsp
+                <a asp-action="Details" asp-route-id="@item.ZanimanjeClassID"><button type="button" class="btn btn-primary float-lg-left">Detalji</button></a> &nbsp
+                <a asp-action="Delete" asp-route-id="@item.ZanimanjeClassID"><button type="submit" class="btn btn-warning">Izbriši</button></a>
             </td>
         </tr>
 }
     </tbody>
 </table>
-<nav aria-label="Oprema Paging" text-align: center>
-    <div class="text-center">
-    @await this.Component.InvokeAsync("Pager", new { pagingList = this.Model })
-        </div>
-</nav>

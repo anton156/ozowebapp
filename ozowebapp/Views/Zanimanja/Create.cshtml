@@ -1,12 +1,12 @@
 ﻿@model ozowebapp.Models.ZanimanjeClass
 
 @{
-    ViewData["Title"] = "Napravi";
+    ViewData["Title"] = "Create";
 }
 
-<h2 style="margin-top:50px;">Napravi</h2>
+    <h2 style="margin-top:50px;">Zanimanja</h2>
 
-
+<h4>Dodaj zanimanje</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -39,9 +39,6 @@
 <div>
     <a asp-action="Index">Natrag na popis</a>
 </div>
-<br />
-<br />
-<br />
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

@@ -6,7 +6,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ozowebapp.Models;
-using ReflectionIT.Mvc.Paging;
 
 namespace ozowebapp.Controllers
 {
@@ -19,25 +18,13 @@ namespace ozowebapp.Controllers
             _context = context;
         }
 
-        // GET: Zanimanjes
-        public async Task<IActionResult> Index( string search,int page= 1)
+        // GET: Zanimanja
+        public async Task<IActionResult> Index()
         {
-          
-            if (!String.IsNullOrEmpty(search))
-            {
-                var query = _context.Zanimanje.AsNoTracking().Where(x => x.Naziv.Contains(search)).OrderBy(s => s.ID);
-                var model = await PagingList.CreateAsync(query, 5, page);
-                return View(model);
-            }
-            else
-            {
-                var query = _context.Zanimanje.AsNoTracking().OrderBy(s => s.ID);
-                var model = await PagingList.CreateAsync(query, 5, page);
-                return View(model);
-            }
+            return View(await _context.Zanimanje.ToListAsync());
         }
 
-        // GET: Zanimanjes/Details/5
+        // GET: Zanimanja/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -45,39 +32,39 @@ namespace ozowebapp.Controllers
                 return NotFound();
             }
 
-            var zanimanje = await _context.Zanimanje
-                .FirstOrDefaultAsync(m => m.ID == id);
-            if (zanimanje == null)
+            var zanimanjeClass = await _context.Zanimanje
+                .FirstOrDefaultAsync(m => m.ZanimanjeClassID == id);
+            if (zanimanjeClass == null)
             {
                 return NotFound();
             }
 
-            return View(zanimanje);
+            return View(zanimanjeClass);
         }
 
-        // GET: Zanimanjes/Create
+        // GET: Zanimanja/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Zanimanjes/Create
+        // POST: Zanimanja/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID,Naziv,Satnica,Opis")] ZanimanjeClass zanimanje)
+        public async Task<IActionResult> Create([Bind("ZanimanjeClassID,Naziv,Satnica,Opis")] ZanimanjeClass zanimanjeClass)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(zanimanje);
+                _context.Add(zanimanjeClass);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(zanimanje);
+            return View(zanimanjeClass);
         }
 
-        // GET: Zanimanjes/Edit/5
+        // GET: Zanimanja/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -85,22 +72,22 @@ namespace ozowebapp.Controllers
                 return NotFound();
             }
 
-            var zanimanje = await _context.Zanimanje.FindAsync(id);
-            if (zanimanje == null)
+            var zanimanjeClass = await _context.Zanimanje.FindAsync(id);
+            if (zanimanjeClass == null)
             {
                 return NotFound();
             }
-            return View(zanimanje);
+            return View(zanimanjeClass);
         }
 
-        // POST: Zanimanjes/Edit/5
+        // POST: Zanimanja/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ID,Naziv,Satnica,Opis")] ZanimanjeClass zanimanje)
+        public async Task<IActionResult> Edit(int id, [Bind("ZanimanjeClassID,Naziv,Satnica,Opis")] ZanimanjeClass zanimanjeClass)
         {
-            if (id != zanimanje.ID)
+            if (id != zanimanjeClass.ZanimanjeClassID)
             {
                 return NotFound();
             }
@@ -109,12 +96,12 @@ namespace ozowebapp.Controllers
             {
                 try
                 {
-                    _context.Update(zanimanje);
+                    _context.Update(zanimanjeClass);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!ZanimanjeExists(zanimanje.ID))
+                    if (!ZanimanjeClassExists(zanimanjeClass.ZanimanjeClassID))
                     {
                         return NotFound();
                     }
@@ -125,10 +112,10 @@ namespace ozowebapp.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(zanimanje);
+            return View(zanimanjeClass);
         }
 
-        // GET: Zanimanjes/Delete/5
+        // GET: Zanimanja/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -136,30 +123,30 @@ namespace ozowebapp.Controllers
                 return NotFound();
             }
 
-            var zanimanje = await _context.Zanimanje
-                .FirstOrDefaultAsync(m => m.ID == id);
-            if (zanimanje == null)
+            var zanimanjeClass = await _context.Zanimanje
+                .FirstOrDefaultAsync(m => m.ZanimanjeClassID == id);
+            if (zanimanjeClass == null)
             {
                 return NotFound();
             }
 
-            return View(zanimanje);
+            return View(zanimanjeClass);
         }
 
-        // POST: Zanimanjes/Delete/5
+        // POST: Zanimanja/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var zanimanje = await _context.Zanimanje.FindAsync(id);
-            _context.Zanimanje.Remove(zanimanje);
+            var zanimanjeClass = await _context.Zanimanje.FindAsync(id);
+            _context.Zanimanje.Remove(zanimanjeClass);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool ZanimanjeExists(int id)
+        private bool ZanimanjeClassExists(int id)
         {
-            return _context.Zanimanje.Any(e => e.ID == id);
+            return _context.Zanimanje.Any(e => e.ZanimanjeClassID == id);
         }
     }
 }

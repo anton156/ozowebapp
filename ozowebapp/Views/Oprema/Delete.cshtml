@@ -1,14 +1,14 @@
 ﻿@model ozowebapp.Models.OpremaClass
 
 @{
-    ViewData["Title"] = "Izbriši";
+    ViewData["Title"] = "Delete";
 }
 
 <h2 style="margin-top:50px;">Oprema</h2>
 
-<h3>Obriši opremu:</h3>
+<h3>Obriši opremu</h3>
 <div>
-    
+    <h4>Jeste li sigurni?</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -47,24 +47,11 @@
         <dd>
             @Html.DisplayFor(model => model.Datum_proizvodnje)
         </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Usluga_ID)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Usluga_ID)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Natjecaj_ID)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Natjecaj_ID)
-        </dd>
     </dl>
-    
-    <form asp-action="Delete">
-        <input type="hidden" asp-for="ID" />
-        <input type="submit" value="Obriši" class="btn btn-warning" /> &nbsp
-        <a asp-action="Index">Natrag na popis</a>
 
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="OpremaClassID" />
+        <input type="submit" value="Delete" class="btn btn-warning" /> &nbsp
+        <a asp-action="Index">Natrag na popis</a>
     </form>
 </div>

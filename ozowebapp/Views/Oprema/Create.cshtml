@@ -1,13 +1,11 @@
 ﻿@model ozowebapp.Models.OpremaClass
 
 @{
-    ViewData["Title"] = "Napravi";
+    ViewData["Title"] = "Create";
 }
 
 <h2 style="margin-top:50px;">Oprema</h2>
 <h4>Dodaj novu opremu:</h4>
-
-
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -43,16 +41,6 @@
                 <input asp-for="Datum_proizvodnje" class="form-control" />
                 <span asp-validation-for="Datum_proizvodnje" class="text-danger"></span>
             </div>
-            @*<div class="form-group">
-                    <label asp-for="Usluga_ID" class="control-label"></label>
-                    <input asp-for="Usluga_ID" class="form-control" />
-                    <span asp-validation-for="Usluga_ID" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="Natjecaj_ID" class="control-label"></label>
-                    <input asp-for="Natjecaj_ID" class="form-control" />
-                    <span asp-validation-for="Natjecaj_ID" class="text-danger"></span>
-                </div>*@
             <br />
 
             <div class="form-group">
@@ -68,7 +56,6 @@
 <br />
 <br />
 <br />
-
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

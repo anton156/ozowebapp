@@ -8,6 +8,7 @@
 
 <h3>Obriši djelatnika</h3>
 <div>
+    <h4>Jeste li sigurni?</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -23,10 +24,10 @@
             @Html.DisplayFor(model => model.Prezime)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.Zanimanje)
+            @Html.DisplayNameFor(model => model.ZanimanjeClass)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.Zanimanje)
+            @Html.DisplayFor(model => model.ZanimanjeClass.ZanimanjeClassID)
         </dd>
         <dt>
             @Html.DisplayNameFor(model => model.Email)
@@ -40,35 +41,11 @@
         <dd>
             @Html.DisplayFor(model => model.Datum_rodjenja)
         </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.JMBG)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.JMBG)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Opis)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Opis)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Usluga_ID)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Usluga_ID)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Natjecaj_ID)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Natjecaj_ID)
-        </dd>
     </dl>
-    
+
     <form asp-action="Delete">
-        <input type="hidden" asp-for="ID" />
-        <input type="submit" value="Obriši" class="btn btn-warning" /> &nbsp
+        <input type="hidden" asp-for="DjelatnikClassID" />
+        <input type="submit" value="Izbriši" class="btn btn-warning" /> &nbsp
         <a asp-action="Index">Natrag na popis</a>
     </form>
 </div>
