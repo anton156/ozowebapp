@@ -9,6 +9,12 @@
     <p>
         <a asp-action="Create"><button type="button" class="btn btn-primary float-lg-left">Novo zanimanje</button></a>
     </p>
+    <p>
+        @using (Html.BeginForm("Index", "Zanimanja", FormMethod.Get))
+        {
+            @Html.TextBox("search")<input style="margin-left:4px;" type="submit" value="Pretraži" />
+        }
+    </p>
 <table class="table">
     <thead>
         <tr>
@@ -45,3 +51,8 @@
 }
     </tbody>
 </table>
+<nav aria-label="Zanimanja Paging">
+    <div class="text-center">
+        @await this.Component.InvokeAsync("Pager", new { pagingList = this.Model })
+    </div>
+</nav>

@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ozowebapp.Models;
+using ReflectionIT.Mvc.Paging;
 
 namespace ozowebapp.Controllers
 {
@@ -19,9 +20,20 @@ namespace ozowebapp.Controllers
         }
 
         // GET: Zanimanja
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string search, int page = 1)
         {
-            return View(await _context.Zanimanje.ToListAsync());
+            if (!String.IsNullOrEmpty(search))
+            {
+                var query = _context.Zanimanje.AsNoTracking().Where(x => x.Naziv.Contains(search)).OrderBy(s => s.ZanimanjeClassID);
+                var model = await PagingList.CreateAsync(query, 5, page);
+                return View(model);
+            }
+            else
+            {
+                var query = _context.Zanimanje.AsNoTracking().OrderBy(s => s.ZanimanjeClassID);
+                var model = await PagingList.CreateAsync(query, 5, page);
+                return View(model);
+            }
         }
 
         // GET: Zanimanja/Details/5
@@ -32,14 +44,14 @@ namespace ozowebapp.Controllers
                 return NotFound();
             }
 
-            var zanimanjeClass = await _context.Zanimanje
+            var zanimanje = await _context.Zanimanje
                 .FirstOrDefaultAsync(m => m.ZanimanjeClassID == id);
-            if (zanimanjeClass == null)
+            if (zanimanje == null)
             {
                 return NotFound();
             }
 
-            return View(zanimanjeClass);
+            return View(zanimanje);
         }
 
         // GET: Zanimanja/Create

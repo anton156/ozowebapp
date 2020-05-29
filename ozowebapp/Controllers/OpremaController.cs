@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ozowebapp.Models;
+using ReflectionIT.Mvc.Paging;
 
 namespace ozowebapp.Controllers
 {
@@ -19,9 +20,20 @@ namespace ozowebapp.Controllers
         }
 
         // GET: Oprema
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string search, int page = 1)
         {
-            return View(await _context.Oprema.ToListAsync());
+            if (!String.IsNullOrEmpty(search))
+            {
+                var query = _context.Oprema.AsNoTracking().Where(x => x.Naziv.Contains(search)).OrderBy(s => s.OpremaClassID);
+                var model = await PagingList.CreateAsync(query, 5, page);
+                return View(model);
+            }
+            else
+            {
+                var query = _context.Oprema.AsNoTracking().OrderBy(s => s.OpremaClassID);
+                var model = await PagingList.CreateAsync(query, 5, page);
+                return View(model);
+            }
         }
 
         // GET: Oprema/Details/5
@@ -32,14 +44,14 @@ namespace ozowebapp.Controllers
                 return NotFound();
             }
 
-            var opremaClass = await _context.Oprema
+            var dodajOpremu = await _context.Oprema
                 .FirstOrDefaultAsync(m => m.OpremaClassID == id);
-            if (opremaClass == null)
+            if (dodajOpremu == null)
             {
                 return NotFound();
             }
 
-            return View(opremaClass);
+            return View(dodajOpremu);
         }
 
         // GET: Oprema/Create

@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ozowebapp.Models;
+using ReflectionIT.Mvc.Paging;
 
 namespace ozowebapp.Controllers
 {
@@ -19,10 +20,21 @@ namespace ozowebapp.Controllers
         }
 
         // GET: Djelatnici
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string search, int page = 1)
         {
-            var connectionStringClass = _context.Djelatnik.Include(d => d.ZanimanjeClass);
-            return View(await connectionStringClass.ToListAsync());
+            if (!String.IsNullOrEmpty(search))
+            {
+                var query = _context.Djelatnik.AsNoTracking().Where(x => x.Ime.Contains(search)).OrderBy(s => s.DjelatnikClassID);
+                var model = await PagingList.CreateAsync(query, 5, page);
+                return View(model);
+            }
+            else
+            {
+                var query = _context.Djelatnik.AsNoTracking().OrderBy(s => s.DjelatnikClassID);
+                var model = await PagingList.CreateAsync(query, 5, page);
+                return View(model);
+            }
+            
         }
 
         // GET: Djelatnici/Details/5
@@ -33,15 +45,14 @@ namespace ozowebapp.Controllers
                 return NotFound();
             }
 
-            var djelatnikClass = await _context.Djelatnik
-                .Include(d => d.ZanimanjeClass)
+            var dodajDjelatnika = await _context.Djelatnik
                 .FirstOrDefaultAsync(m => m.DjelatnikClassID == id);
-            if (djelatnikClass == null)
+            if (dodajDjelatnika == null)
             {
                 return NotFound();
             }
 
-            return View(djelatnikClass);
+            return View(dodajDjelatnika);
         }
 
         // GET: Djelatnici/Create
