@@ -8,8 +8,12 @@ namespace ozowebapp.Models
 {
     public class ZanimanjeClass
     {
+        [Key]
         public int ZanimanjeClassID { get; set; }
+        [Required(ErrorMessage = "Unesite ispravne podatke")]
         public string Naziv { get; set; }
+        [Required(ErrorMessage = "Unesite ispravne podatke")]
+        [Range(0,99999999)]
         public double? Satnica { get; set; }
 
         public string? Opis { get; set; }
