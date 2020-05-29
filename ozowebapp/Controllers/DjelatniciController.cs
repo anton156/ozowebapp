@@ -24,13 +24,13 @@ namespace ozowebapp.Controllers
         {
             if (!String.IsNullOrEmpty(search))
             {
-                var query = _context.Djelatnik.AsNoTracking().Where(x => x.Ime.Contains(search)).OrderBy(s => s.DjelatnikClassID);
+                var query = _context.Djelatnik.AsNoTracking().Where(x => x.Ime.Contains(search)).Include(d => d.ZanimanjeClass).OrderBy(s => s.DjelatnikClassID);
                 var model = await PagingList.CreateAsync(query, 5, page);
                 return View(model);
             }
             else
             {
-                var query = _context.Djelatnik.AsNoTracking().OrderBy(s => s.DjelatnikClassID);
+                var query = _context.Djelatnik.AsNoTracking().Include(d => d.ZanimanjeClass).OrderBy(s => s.DjelatnikClassID);
                 var model = await PagingList.CreateAsync(query, 5, page);
                 return View(model);
             }
