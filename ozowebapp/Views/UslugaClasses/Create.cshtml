@@ -32,7 +32,7 @@
                 <input asp-for="Lokacija" class="form-control" />
                 <span asp-validation-for="Lokacija" class="text-danger"></span>
             </div>
-            @using (Html.BeginForm())
+            @using (Html.BeginForm()) { 
                 <div class="form-group">
                     @Html.LabelFor(model=>model.Zanimanja, new { @class ="control-label col-md-2"})
                     <div class="col-md-10">
