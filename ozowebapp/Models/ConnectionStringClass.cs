@@ -19,6 +19,7 @@ namespace ozowebapp.Models
         public DbSet<DjelatnikClass> Djelatnik { get; set; }
         public DbSet<ozowebapp.Models.UslugaClass> UslugaClass { get; set; }
         public DbSet<ozowebapp.Models.UslugaToZanimanje> UslugaToZanimanjes { get; set; }
+        public DbSet<ozowebapp.Models.UslugaViewModel> UslugaViewModel { get; set; }
 
 
     }

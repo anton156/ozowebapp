@@ -19,6 +19,6 @@ namespace ozowebapp.Models
         public string? Opis { get; set; }
 
         public virtual ICollection<DjelatnikClass> Djelatnici { get; set; }
-        public virtual ICollection<UslugaToZanimanje> UslugaToZanimanjes { get; set; }
+        public virtual List<UslugaToZanimanje> UslugaToZanimanjes { get; set; }
     }
 }

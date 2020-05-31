@@ -1,0 +1,63 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
+using ozowebapp.Models;
+
+namespace ozowebapp.Controllers
+{
+    public class UslugaController : Controller
+    {
+        private readonly ConnectionStringClass _context;
+
+        public UslugaController(ConnectionStringClass context)
+        {
+            _context = context;
+        }
+        public IActionResult Index()
+        {
+            var item = _context.UslugaClass.ToList();
+            return View(item);
+        }
+        [HttpGet]
+        public IActionResult Create()
+        {
+            var item = _context.Zanimanje.ToList();
+            UslugaViewModel m1 = new UslugaViewModel();
+            m1.Zanimanja = item.Select(vm => new CheckBoxViewModel()
+            {
+                ID = vm.ZanimanjeClassID,
+                Ime = vm.Naziv,
+                Checked = false,
+            }).ToList(); ;
+            return View(m1);
+
+        }
+        [HttpPost]
+        public IActionResult Create(UslugaViewModel UVM, UslugaClass usluge,UslugaToZanimanje UZ)
+        {
+            List<UslugaToZanimanje> utz = new List<UslugaToZanimanje>();
+            usluge.Naziv = UVM.Naziv;
+            usluge.Cijena = UVM.Cijena;
+            usluge.Opis = UVM.Opis;
+            usluge.Lokacija = UVM.Lokacija;
+            _context.UslugaClass.Add(usluge);
+            _context.SaveChanges();
+            int uslugaid = usluge.UslugaClassID;
+            foreach(var item in UVM.Zanimanja)
+            {
+                if (item.Checked == true)
+                {
+                    utz.Add(new UslugaToZanimanje() { UslugaClassID = uslugaid, ZanimanjeClassID = item.ID });
+                }
+            }
+            foreach(var item in utz)
+            {
+                _context.UslugaToZanimanjes.Add(item);
+            }
+            _context.SaveChanges();
+            return RedirectToAction("Index", "Usluga");
+        }
+    }
+}
