@@ -43,9 +43,10 @@ namespace ozowebapp.Controllers
 
         }
         [HttpPost]
-        public IActionResult Create(UslugaViewModel UVM, UslugaClass usluge,UslugaToZanimanje UZ)
+        public IActionResult Create(UslugaViewModel UVM, UslugaClass usluge,UslugaToZanimanje UZ, UslugaToOprema UP)
         {
             List<UslugaToZanimanje> utz = new List<UslugaToZanimanje>();
+            List<UslugaToOprema> utp = new List<UslugaToOprema>();
             usluge.Naziv = UVM.Naziv;
             usluge.Cijena = UVM.Cijena;
             usluge.Opis = UVM.Opis;
@@ -63,6 +64,17 @@ namespace ozowebapp.Controllers
             foreach(var item in utz)
             {
                 _context.UslugaToZanimanjes.Add(item);
+            }
+            foreach (var item2 in UVM.Oprema)
+            {
+                if (item2.Checked == true)
+                {
+                    utp.Add(new UslugaToOprema() { UslugaClassID = uslugaid, OpremaClassID = item2.ID });
+                }
+            }
+            foreach (var item2 in utp)
+            {
+                _context.UslugaToOpremas.Add(item2);
             }
             _context.SaveChanges();
             return RedirectToAction("Index", "Usluga");
