@@ -69,6 +69,12 @@ namespace ozowebapp.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("DjelatnikClassID,Ime,Prezime,ZanimanjeClassID,Email,Datum_rodjenja")] DjelatnikClass djelatnikClass)
         {
+            var DodajZanimanje = _context.Zanimanje.Where(x=>djelatnikClass.ZanimanjeClassID==x.ZanimanjeClassID).ToList();
+            foreach(var stock in DodajZanimanje)
+            {
+                stock.Kolicina = stock.Kolicina + 1;
+            }
+
             if (ModelState.IsValid)
             {
                 _context.Add(djelatnikClass);
