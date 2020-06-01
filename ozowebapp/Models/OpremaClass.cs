@@ -29,5 +29,7 @@ namespace ozowebapp.Models
         [Display(Name ="Datum proizvodnje")]
         public DateTime? Datum_proizvodnje { get; set; }
 
+        public virtual List<UslugaToOprema> UslugaToOpremas { get; set; }
+
     }
 }

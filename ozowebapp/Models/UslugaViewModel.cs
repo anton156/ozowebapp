@@ -17,5 +17,6 @@ namespace ozowebapp.Models
         public string Lokacija { get; set; }
 
         public List<CheckBoxViewModel> Zanimanja { get; set; }
+        public List<CheckBoxViewModelOprema> Oprema { get; set; }
     }
 }

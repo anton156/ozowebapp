@@ -42,7 +42,23 @@
                                 @Html.DisplayFor(it => Model.Zanimanja[i].Ime)
                             </td>
                             <td>
-                                @Html.CheckBoxFor(it=>Model.Zanimanja[i].Checked)
+                                @Html.CheckBoxFor(it => Model.Zanimanja[i].Checked)
+                            </td>
+                        </tr>
+                    }
+                </table>
+            </div>
+            <div class="form-group">
+                <table>
+                    @for (int i = 0; i < Model.Oprema.Capacity; i++)
+                    {
+                        <tr>
+                            <td>
+                                @Html.HiddenFor(x => Model.Oprema[i].ID)
+                                @Html.DisplayFor(it => Model.Oprema[i].Ime)
+                            </td>
+                            <td>
+                                @Html.CheckBoxFor(it => Model.Oprema[i].Checked)
                             </td>
                         </tr>
                     }

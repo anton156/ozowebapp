@@ -16,5 +16,6 @@ namespace ozowebapp.Models
         public string Opis { get; set; }
         public string Lokacija { get; set; }
         public virtual List<UslugaToZanimanje> UslugaToZanimanjes { get; set; }
+        public virtual List<UslugaToOprema> UslugaToOpremas { get; set; }
     }
 }

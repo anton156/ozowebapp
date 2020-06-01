@@ -31,6 +31,14 @@ namespace ozowebapp.Controllers
                 Ime = vm.Naziv,
                 Checked = false,
             }).ToList(); ;
+            var opre = _context.Oprema.ToList();
+            m1.Oprema = opre.Select(vmo => new CheckBoxViewModelOprema()
+            {
+                ID = vmo.OpremaClassID,
+                Ime = vmo.Naziv,
+                Checked = false,
+            }).ToList(); ;
+            
             return View(m1);
 
         }
