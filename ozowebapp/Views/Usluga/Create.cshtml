@@ -33,6 +33,8 @@
                 <span asp-validation-for="Lokacija" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <label>Zanimanja</label>
+
                 <table>
                     @for (int i = 0; i < Model.Zanimanja.Capacity; i++)
                     {
@@ -42,6 +44,7 @@
                                 @Html.DisplayFor(it => Model.Zanimanja[i].Ime)
                             </td>
                             <td>
+                                &nbsp;
                                 @Html.CheckBoxFor(it => Model.Zanimanja[i].Checked, new { Style = "vertical-align:3px" })
                             </td>
                         </tr>
@@ -49,6 +52,8 @@
                 </table>
             </div>
             <div class="form-group">
+                <label>Oprema</label>
+
                 <table>
                     @for (int i = 0; i < Model.Oprema.Capacity; i++)
                     {
@@ -58,6 +63,7 @@
                                 @Html.DisplayFor(it => Model.Oprema[i].Ime)
                             </td>
                             <td>
+                                &nbsp;
                                 @Html.CheckBoxFor(it => Model.Oprema[i].Checked)
                             </td>
                         </tr>
