@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Razor.Language;
 using Microsoft.EntityFrameworkCore;
 using ozowebapp.Models;
 
@@ -97,6 +98,45 @@ namespace ozowebapp.Controllers
             UVM.Lokacija = us.Lokacija;
             UVM.Zanimanja = svazan;
             return View(UVM);
+        }
+        public IActionResult Edit(UslugaViewModel UVM,UslugaClass usluge,UslugaToZanimanje UZ)
+        {
+            List<UslugaToZanimanje> utz = new List<UslugaToZanimanje>();
+            usluge.Naziv = UVM.Naziv;
+            usluge.Cijena = UVM.Cijena;
+            usluge.Opis = UVM.Opis;
+            usluge.Lokacija = UVM.Lokacija;
+            _context.UslugaClass.Update(usluge);
+            _context.SaveChanges();
+            int uslugaid = usluge.UslugaClassID;
+            foreach (var item in UVM.Zanimanja)
+            {
+                if (item.Checked == true)
+                {
+                    utz.Add(new UslugaToZanimanje() { UslugaClassID = uslugaid, ZanimanjeClassID = item.ID });
+                }
+            }
+            foreach (var item in utz)
+            {
+                _context.UslugaToZanimanjes.Add(item);
+            }
+            var databasetable = _context.UslugaToZanimanjes.Where(a => a.UslugaClassID == uslugaid).ToList();
+            var resultlist = databasetable.Except(utz).ToList();
+            foreach(var item in resultlist)
+            {
+                _context.UslugaToZanimanjes.Remove(item);
+                _context.SaveChanges();
+            }
+            var getzanid = _context.UslugaToZanimanjes.Where(a => a.UslugaClassID == uslugaid).ToList();
+            foreach(var item in utz)
+            {
+                if (!getzanid.Contains(item))
+                {
+                    _context.UslugaToZanimanjes.Add(item);
+                    _context.SaveChanges();
+                }
+            }
+            return RedirectToAction("Index", "Usluga");
         }
     }
 }
