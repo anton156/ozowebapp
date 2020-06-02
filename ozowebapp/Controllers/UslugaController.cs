@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using ozowebapp.Models;
 
 namespace ozowebapp.Controllers
@@ -78,6 +79,24 @@ namespace ozowebapp.Controllers
             }
             _context.SaveChanges();
             return RedirectToAction("Index", "Usluga");
+        }
+        [HttpGet]
+        public IActionResult Edit(int id)
+        {
+            UslugaViewModel UVM = new UslugaViewModel();
+            var us = _context.UslugaClass.Include(s => s.UslugaToZanimanjes).ThenInclude(e => e.ZanimanjeClass).AsNoTracking().SingleOrDefault(m => m.UslugaClassID == id);
+            var svazan = _context.Zanimanje.Select(vm => new CheckBoxViewModel()
+            {
+                ID = vm.ZanimanjeClassID,
+                Ime = vm.Naziv,
+                Checked = vm.UslugaToZanimanjes.Any(x => x.UslugaClassID == us.UslugaClassID) ? true : false
+            }).ToList();
+            UVM.Naziv = us.Naziv;
+            UVM.Cijena = us.Cijena;
+            UVM.Opis = us.Opis;
+            UVM.Lokacija = us.Lokacija;
+            UVM.Zanimanja = svazan;
+            return View(UVM);
         }
     }
 }
