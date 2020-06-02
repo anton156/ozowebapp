@@ -9,22 +9,22 @@ using ozowebapp.Models;
 
 namespace ozowebapp.Controllers
 {
-    public class UslugaClassesController : Controller
+    public class UslugeController : Controller
     {
         private readonly ConnectionStringClass _context;
 
-        public UslugaClassesController(ConnectionStringClass context)
+        public UslugeController(ConnectionStringClass context)
         {
             _context = context;
         }
 
-        // GET: UslugaClasses
+        // GET: Usluge
         public async Task<IActionResult> Index()
         {
             return View(await _context.UslugaClass.ToListAsync());
         }
 
-        // GET: UslugaClasses/Details/5
+        // GET: Usluge/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -42,13 +42,13 @@ namespace ozowebapp.Controllers
             return View(uslugaClass);
         }
 
-        // GET: UslugaClasses/Create
+        // GET: Usluge/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: UslugaClasses/Create
+        // POST: Usluge/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -64,7 +64,7 @@ namespace ozowebapp.Controllers
             return View(uslugaClass);
         }
 
-        // GET: UslugaClasses/Edit/5
+        // GET: Usluge/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -90,6 +90,9 @@ namespace ozowebapp.Controllers
 
             MyViewModel.UslugaClassID = id.Value;
             MyViewModel.Naziv = uslugaClass.Naziv;
+            MyViewModel.Opis = uslugaClass.Opis;
+            MyViewModel.Cijena = uslugaClass.Cijena;
+            MyViewModel.Lokacija = uslugaClass.Lokacija;
 
             var MyCheckBoxList = new List<CheckBoxViewModel>();
 
@@ -98,15 +101,15 @@ namespace ozowebapp.Controllers
                 MyCheckBoxList.Add(new CheckBoxViewModel { ID = item.ZanimanjeClassID, Ime = item.Naziv, Checked = item.Checked });
             }
             MyViewModel.Zanimanja = MyCheckBoxList;
-            return View(uslugaClass);
+            return View(MyViewModel);
         }
 
-        // POST: UslugaClasses/Edit/5
+        // POST: Usluge/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("UslugaClassID,Naziv,Cijena,Opis,Lokacija")] UslugaClass uslugaClass)
+        public ActionResult Edit(int id, UslugaViewModel uslugaClass)
         {
             if (id != uslugaClass.UslugaClassID)
             {
@@ -117,8 +120,29 @@ namespace ozowebapp.Controllers
             {
                 try
                 {
+                    var MojaUsluga = _context.UslugaClass.Find(uslugaClass.UslugaClassID);
+
+                    MojaUsluga.Naziv = uslugaClass.Naziv;
+
+                    foreach (var item in _context.UslugaToZanimanjes)
+                    {
+                        if (item.UslugaClassID == uslugaClass.UslugaClassID)
+                        {
+                            _context.Entry(item).State = EntityState.Deleted;
+                        }
+                    }
+
+                    foreach (var item in uslugaClass.Zanimanja)
+                    {
+                        if (item.Checked)
+                        {
+                            _context.UslugaToZanimanjes.Add(new UslugaToZanimanje() { UslugaClassID = uslugaClass.UslugaClassID, ZanimanjeClassID = item.ID });
+                        }
+                    }
+
                     _context.Update(uslugaClass);
-                    await _context.SaveChangesAsync();
+                    _context.SaveChanges();
+
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -131,12 +155,14 @@ namespace ozowebapp.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Index");
+
             }
+
             return View(uslugaClass);
         }
 
-        // GET: UslugaClasses/Delete/5
+        // GET: Usluge/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -154,7 +180,7 @@ namespace ozowebapp.Controllers
             return View(uslugaClass);
         }
 
-        // POST: UslugaClasses/Delete/5
+        // POST: Usluge/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
