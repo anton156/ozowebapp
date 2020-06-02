@@ -42,7 +42,7 @@
                                 @Html.DisplayFor(it => Model.Zanimanja[i].Ime)
                             </td>
                             <td>
-                                @Html.CheckBoxFor(it => Model.Zanimanja[i].Checked)
+                                @Html.CheckBoxFor(it => Model.Zanimanja[i].Checked, new { Style = "vertical-align:3px" })
                             </td>
                         </tr>
                     }

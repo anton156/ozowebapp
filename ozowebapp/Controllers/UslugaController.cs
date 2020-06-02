@@ -99,6 +99,7 @@ namespace ozowebapp.Controllers
             UVM.Zanimanja = svazan;
             return View(UVM);
         }
+        [HttpPost]
         public IActionResult Edit(UslugaViewModel UVM,UslugaClass usluge,UslugaToZanimanje UZ)
         {
             List<UslugaToZanimanje> utz = new List<UslugaToZanimanje>();
