@@ -163,6 +163,11 @@ namespace ozowebapp.Controllers
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var djelatnikClass = await _context.Djelatnik.FindAsync(id);
+            var DodajZanimanje = _context.Zanimanje.Where(x => djelatnikClass.ZanimanjeClassID == x.ZanimanjeClassID).ToList();
+            foreach (var stock in DodajZanimanje)
+            {
+                stock.Kolicina = stock.Kolicina - 1;
+            }
             _context.Djelatnik.Remove(djelatnikClass);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
