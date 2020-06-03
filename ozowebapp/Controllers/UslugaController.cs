@@ -100,7 +100,7 @@ namespace ozowebapp.Controllers
             return View(UVM);
         }
         [HttpPost]
-        public IActionResult Edit(UslugaViewModel UVM,UslugaClass usluge,UslugaToZanimanje UZ)
+        public IActionResult Edit(UslugaViewModel UVM, UslugaClass usluge, UslugaToZanimanje UZ)
         {
             List<UslugaToZanimanje> utz = new List<UslugaToZanimanje>();
             usluge.Naziv = UVM.Naziv;
@@ -109,7 +109,9 @@ namespace ozowebapp.Controllers
             usluge.Lokacija = UVM.Lokacija;
             _context.UslugaClass.Update(usluge);
             _context.SaveChanges();
+
             int uslugaid = usluge.UslugaClassID;
+
             foreach (var item in UVM.Zanimanja)
             {
                 if (item.Checked == true)
@@ -117,10 +119,12 @@ namespace ozowebapp.Controllers
                     utz.Add(new UslugaToZanimanje() { UslugaClassID = uslugaid, ZanimanjeClassID = item.ID });
                 }
             }
-            foreach (var item in utz)
-            {
-                _context.UslugaToZanimanjes.Add(item);
-            }
+
+            //foreach (var item in utz)
+            //{
+            //    _context.UslugaToZanimanjes.Add(item);
+            //}
+
             var databasetable = _context.UslugaToZanimanjes.Where(a => a.UslugaClassID == uslugaid).ToList();
             var resultlist = databasetable.Except(utz).ToList();
             foreach(var item in resultlist)
@@ -128,6 +132,7 @@ namespace ozowebapp.Controllers
                 _context.UslugaToZanimanjes.Remove(item);
                 _context.SaveChanges();
             }
+
             var getzanid = _context.UslugaToZanimanjes.Where(a => a.UslugaClassID == uslugaid).ToList();
             foreach(var item in utz)
             {
@@ -137,6 +142,7 @@ namespace ozowebapp.Controllers
                     _context.SaveChanges();
                 }
             }
+
             return RedirectToAction("Index", "Usluga");
         }
     }
