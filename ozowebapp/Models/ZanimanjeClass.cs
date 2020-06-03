@@ -17,7 +17,7 @@ namespace ozowebapp.Models
         public double? Satnica { get; set; }
 
         public string? Opis { get; set; }
-        public int? Kolicina { get; set; }
+        public int? Kolicina { get; set; } = 0;
 
         public virtual ICollection<DjelatnikClass> Djelatnici { get; set; }
         public virtual List<UslugaToZanimanje> UslugaToZanimanjes { get; set; }
