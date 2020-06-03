@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ozowebapp.Migrations
 {
-    public partial class InitialMigration : Migration
+    public partial class InitMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -80,7 +80,8 @@ namespace ozowebapp.Migrations
                     UslugaToOpremaID = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     UslugaClassID = table.Column<int>(nullable: false),
-                    OpremaClassID = table.Column<int>(nullable: false)
+                    OpremaClassID = table.Column<int>(nullable: false),
+                    Kolicina = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -106,7 +107,7 @@ namespace ozowebapp.Migrations
                     ID = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Ime = table.Column<string>(nullable: true),
-                    Checked = table.Column<bool>(nullable: false),
+                    Kolicina = table.Column<int>(nullable: false),
                     UslugaViewModelUslugaClassID = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
@@ -127,7 +128,7 @@ namespace ozowebapp.Migrations
                     ID = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Ime = table.Column<string>(nullable: true),
-                    Checked = table.Column<bool>(nullable: false),
+                    Kolicina = table.Column<int>(nullable: false),
                     UslugaViewModelUslugaClassID = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
@@ -171,7 +172,8 @@ namespace ozowebapp.Migrations
                     UslugaToZanimanjeID = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     UslugaClassID = table.Column<int>(nullable: false),
-                    ZanimanjeClassID = table.Column<int>(nullable: false)
+                    ZanimanjeClassID = table.Column<int>(nullable: false),
+                    Kolicina = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {

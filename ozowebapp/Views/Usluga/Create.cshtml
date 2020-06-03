@@ -43,13 +43,10 @@
                             @Html.HiddenFor(x => Model.Zanimanja[i].ID)
                             @Html.DisplayFor(it => Model.Zanimanja[i].Ime)
                         </td>
+                       
                         <td>
                             &nbsp;
-                            @Html.CheckBoxFor(it => Model.Zanimanja[i].Checked, new { Style = "vertical-align:3px" })
-                        </td>
-                        <td>
-                            &nbsp;
-                            @Html.TextBoxFor(it => Model.Zanimanja[i].Checked, new { Style = "vertical-align:3px" })
+                            @Html.TextBoxFor(it => Model.Zanimanja[i].Kolicina, new { Style = "vertical-align:3px" })
                         </td>
                     </tr>
                     }
@@ -68,7 +65,7 @@
                             </td>
                             <td>
                                 &nbsp;
-                                @Html.CheckBoxFor(it => Model.Oprema[i].Checked)
+                                @Html.TextBoxFor(it => Model.Oprema[i].Kolicina, new { Style = "vertical-align:3px" })
                             </td>
                         </tr>
                     }

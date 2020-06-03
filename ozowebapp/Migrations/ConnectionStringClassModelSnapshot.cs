@@ -26,11 +26,11 @@ namespace ozowebapp.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<bool>("Checked")
-                        .HasColumnType("bit");
-
                     b.Property<string>("Ime")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Kolicina")
+                        .HasColumnType("int");
 
                     b.Property<int?>("UslugaViewModelUslugaClassID")
                         .HasColumnType("int");
@@ -49,11 +49,11 @@ namespace ozowebapp.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<bool>("Checked")
-                        .HasColumnType("bit");
-
                     b.Property<string>("Ime")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Kolicina")
+                        .HasColumnType("int");
 
                     b.Property<int?>("UslugaViewModelUslugaClassID")
                         .HasColumnType("int");
@@ -161,6 +161,9 @@ namespace ozowebapp.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int>("Kolicina")
+                        .HasColumnType("int");
+
                     b.Property<int>("OpremaClassID")
                         .HasColumnType("int");
 
@@ -182,6 +185,9 @@ namespace ozowebapp.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("Kolicina")
+                        .HasColumnType("int");
 
                     b.Property<int>("UslugaClassID")
                         .HasColumnType("int");

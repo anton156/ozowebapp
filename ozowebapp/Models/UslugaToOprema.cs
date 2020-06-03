@@ -10,6 +10,7 @@ namespace ozowebapp.Models
         public int UslugaToOpremaID { get; set; }
         public int UslugaClassID { get; set; }
         public int OpremaClassID { get; set; }
+        public int Kolicina { get; set; }
 
         public virtual UslugaClass UslugaClass { get; set; }
         public virtual OpremaClass OpremaClass { get; set; }

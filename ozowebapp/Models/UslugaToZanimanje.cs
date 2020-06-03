@@ -11,6 +11,7 @@ namespace ozowebapp.Models
         public int UslugaClassID { get; set; }
         public int ZanimanjeClassID { get; set; }
 
+        public int Kolicina { get; set; }
         public virtual UslugaClass UslugaClass { get; set; }
         public virtual ZanimanjeClass ZanimanjeClass { get; set; }
     }

@@ -9,7 +9,7 @@ namespace ozowebapp.Models
     {
         public int ID { get; set; }
         public string Ime { get; set; }
-        public bool Checked { get; set; }
+        public int Kolicina { get; set; }
 
 
     }

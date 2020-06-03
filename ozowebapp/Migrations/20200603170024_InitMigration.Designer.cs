@@ -10,8 +10,8 @@ using ozowebapp.Models;
 namespace ozowebapp.Migrations
 {
     [DbContext(typeof(ConnectionStringClass))]
-    [Migration("20200602124848_InitialMigration")]
-    partial class InitialMigration
+    [Migration("20200603170024_InitMigration")]
+    partial class InitMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -28,11 +28,11 @@ namespace ozowebapp.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<bool>("Checked")
-                        .HasColumnType("bit");
-
                     b.Property<string>("Ime")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Kolicina")
+                        .HasColumnType("int");
 
                     b.Property<int?>("UslugaViewModelUslugaClassID")
                         .HasColumnType("int");
@@ -51,11 +51,11 @@ namespace ozowebapp.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<bool>("Checked")
-                        .HasColumnType("bit");
-
                     b.Property<string>("Ime")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Kolicina")
+                        .HasColumnType("int");
 
                     b.Property<int?>("UslugaViewModelUslugaClassID")
                         .HasColumnType("int");
@@ -163,6 +163,9 @@ namespace ozowebapp.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int>("Kolicina")
+                        .HasColumnType("int");
+
                     b.Property<int>("OpremaClassID")
                         .HasColumnType("int");
 
@@ -184,6 +187,9 @@ namespace ozowebapp.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("Kolicina")
+                        .HasColumnType("int");
 
                     b.Property<int>("UslugaClassID")
                         .HasColumnType("int");
