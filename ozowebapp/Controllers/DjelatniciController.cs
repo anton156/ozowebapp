@@ -46,6 +46,7 @@ namespace ozowebapp.Controllers
             }
 
             var dodajDjelatnika = await _context.Djelatnik
+                .Include(d => d.ZanimanjeClass)
                 .FirstOrDefaultAsync(m => m.DjelatnikClassID == id);
             if (dodajDjelatnika == null)
             {
