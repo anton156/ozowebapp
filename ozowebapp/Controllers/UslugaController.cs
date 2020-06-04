@@ -24,8 +24,6 @@ namespace ozowebapp.Controllers
             return View(item);
         }
 
-
-        // GET: Djelatnici/Details/5
         [HttpGet]
         public IActionResult Details(int? id)
         {
@@ -195,5 +193,24 @@ namespace ozowebapp.Controllers
 
         //    return RedirectToAction("Index", "Usluga");
         //}
+        [HttpGet]
+        public IActionResult Delete(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var dodajUslugu = _context.UslugaClass
+                .Include(d => d.UslugaToZanimanjes)
+                .Include(d => d.UslugaToOpremas)
+                .FirstOrDefault(m => m.UslugaClassID == id);
+            if (dodajUslugu == null)
+            {
+                return NotFound();
+            }
+
+            return View(dodajUslugu);
+        }
     }
 }
