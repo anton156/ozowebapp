@@ -4,16 +4,26 @@
     ViewData["Title"] = "Details";
 }
 
-<h2>Details</h2>
+<style>
+    dt {
+        margin-top: 5px;
+    }
+
+    dd {
+        margin-top: 5px;
+    }
+</style>
+
+<h2 style="margin-top:50px;">Usluge</h2>
 
 <div>
-    <h4>UslugaClass</h4>
+    <h4>Detalji</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
             @Html.DisplayNameFor(model => model.Naziv)
         </dt>
-        <dd>
+        <dd style=" margin-top: 0px">
             @Html.DisplayFor(model => model.Naziv)
         </dd>
         <dt>
@@ -34,6 +44,7 @@
         <dd>
             @Html.DisplayFor(model => model.Lokacija)
         </dd>
+        <br />
         <dt>
             Zanimanja
         </dt>
@@ -41,15 +52,17 @@
         {
 
             <dd>
-                Naziv
-                @Html.DisplayFor(model => model.UslugaToZanimanjes[i].Naziv)
-                &nbsp;
-                Količina
+
+                @Html.DisplayFor(model => model.UslugaToZanimanjes[i].Naziv, new { Style = "font-size:20px;" })
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                Broj radnika:
                 @Html.DisplayFor(model => model.UslugaToZanimanjes[i].Kolicina)
                 <br />
 
             </dd>
         }
+        <br />
+
         <dt>
             Oprema
         </dt>
@@ -57,10 +70,10 @@
         {
 
             <dd>
-                Naziv
+
                 @Html.DisplayFor(model => model.UslugaToOpremas[i].Naziv)
-                &nbsp;
-                Količina
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                Količina:
                 @Html.DisplayFor(model => model.UslugaToOpremas[i].Kolicina)
                 <br />
 
@@ -68,7 +81,9 @@
         }
     </dl>
 </div>
+<br />
+<br />
+
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.UslugaClassID">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index">Nazad na popis</a>
 </div>

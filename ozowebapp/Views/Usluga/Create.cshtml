@@ -19,7 +19,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="Cijena" class="control-label"></label>
-                <input asp-for="Cijena" class="form-control" />
+                <input asp-for="Cijena" class="form-control" type="number" min="0" step="1" />
                 <span asp-validation-for="Cijena" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -34,28 +34,31 @@
             </div>
             <div class="form-group">
                 <label>Zanimanja</label>
-
+                <br />
                 <table>
                     @for (int i = 0; i < Model.Zanimanja.Capacity; i++)
                     {
-                    <tr>
-                        <td>
-                            @Html.HiddenFor(x => Model.Zanimanja[i].ID)
-                            @Html.HiddenFor(y => Model.Zanimanja[i].Ime)
-                            @Html.DisplayFor(it => Model.Zanimanja[i].Ime)
-                        </td>
-                       
-                        <td>
-                            &nbsp;
-                            @Html.TextBoxFor(it => Model.Zanimanja[i].Kolicina, new { Style = "vertical-align:3px" })
-                        </td>
-                    </tr>
+                        <tr>
+                            <td>
+                                @Html.HiddenFor(x => Model.Zanimanja[i].ID)
+                                @Html.HiddenFor(y => Model.Zanimanja[i].Ime)
+                                -&nbsp;
+                                @Html.DisplayFor(it => Model.Zanimanja[i].Ime)
+                            </td>
+
+                            <td>
+                                &nbsp;
+                                &nbsp;
+                                &nbsp;
+                                @Html.TextBoxFor(it => Model.Zanimanja[i].Kolicina, new { Style = "vertical-align:3px; margin-top:3px; width:65px;", type = "number", min = "0", step = "1" })
+                            </td>
+                        </tr>
                     }
                 </table>
             </div>
             <div class="form-group">
                 <label>Oprema</label>
-
+                <br />
                 <table>
                     @for (int i = 0; i < Model.Oprema.Capacity; i++)
                     {
@@ -63,26 +66,35 @@
                             <td>
                                 @Html.HiddenFor(x => Model.Oprema[i].ID)
                                 @Html.HiddenFor(it => Model.Oprema[i].Ime)
+                                -&nbsp;
                                 @Html.DisplayFor(it => Model.Oprema[i].Ime)
                             </td>
                             <td>
                                 &nbsp;
-                                @Html.TextBoxFor(it => Model.Oprema[i].Kolicina, new { Style = "vertical-align:3px" })
+                                &nbsp;
+                                &nbsp;
+                                @Html.TextBoxFor(it => Model.Oprema[i].Kolicina, new { Style = "vertical-align:3px; margin-top:3px; width:65px;", type = "number", min = "0", step = "1" })
                             </td>
                         </tr>
                     }
                 </table>
             </div>
+            <br />
+
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" value="Potvrdi" class="btn btn-default" />
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index">Nazad na popis</a>
 </div>
+<br />
+<br />
+<br />
+
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
