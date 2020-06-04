@@ -56,6 +56,11 @@ namespace ozowebapp.Controllers
             int uslugaid = usluge.UslugaClassID;
             foreach(var item in UVM.Zanimanja)
             {
+                var oduzmi = _context.Zanimanje.Where(x => item.ID == x.ZanimanjeClassID).ToList();
+                foreach (var stock in oduzmi)
+                {
+                    stock.Kolicina = stock.Kolicina - item.Kolicina;
+                }
                 if (item.Kolicina > 0)
                 {
                     utz.Add(new UslugaToZanimanje() { UslugaClassID = uslugaid, ZanimanjeClassID = item.ID, Kolicina = item.Kolicina});
@@ -69,6 +74,11 @@ namespace ozowebapp.Controllers
             }
             foreach (var item2 in UVM.Oprema)
             {
+                var oduzmi = _context.Zanimanje.Where(x => item2.ID == x.ZanimanjeClassID).ToList();
+                foreach (var stock in oduzmi)
+                {
+                    stock.Kolicina = stock.Kolicina - item2.Kolicina;
+                }
                 if (item2.Kolicina > 0)
                 {
                     utp.Add(new UslugaToOprema() { UslugaClassID = uslugaid, OpremaClassID = item2.ID, Kolicina = item2.Kolicina });
