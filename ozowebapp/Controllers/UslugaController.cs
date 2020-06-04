@@ -110,7 +110,7 @@ namespace ozowebapp.Controllers
             }
             foreach (var item2 in UVM.Oprema)
             {
-                var oduzmi = _context.Zanimanje.Where(x => item2.ID == x.ZanimanjeClassID).ToList();
+                var oduzmi = _context.Oprema.Where(x => item2.ID == x.OpremaClassID).ToList();
                 foreach (var stock in oduzmi)
                 {
                     stock.Kolicina = stock.Kolicina - item2.Kolicina;
@@ -123,18 +123,6 @@ namespace ozowebapp.Controllers
             foreach (var item2 in utp)
             {
                 _context.UslugaToOpremas.Add(item2);
-            }
-            _context.SaveChanges();
-
-            foreach (var item in utz)
-            {
-
-                var OduzmiKolicinu = _context.Zanimanje.Where(x => UZ.ZanimanjeClassID == x.ZanimanjeClassID).ToList();
-                foreach (var stock in OduzmiKolicinu)
-                {
-                    stock.Kolicina = stock.Kolicina - item.Kolicina;
-                }
-
             }
             _context.SaveChanges();
 
