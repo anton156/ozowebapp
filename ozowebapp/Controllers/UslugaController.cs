@@ -17,11 +17,35 @@ namespace ozowebapp.Controllers
         {
             _context = context;
         }
+
         public IActionResult Index()
         {
             var item = _context.UslugaClass.ToList();
             return View(item);
         }
+
+
+        // GET: Djelatnici/Details/5
+        [HttpGet]
+        public IActionResult Details(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var dodajUslugu = _context.UslugaClass
+                .Include(d => d.UslugaToZanimanjes)
+                .Include(d => d.UslugaToOpremas)
+                .FirstOrDefault(m => m.UslugaClassID == id);
+            if (dodajUslugu == null)
+            {
+                return NotFound();
+            }
+
+            return View(dodajUslugu);
+        }
+
         [HttpGet]
         public IActionResult Create()
         {
@@ -60,11 +84,13 @@ namespace ozowebapp.Controllers
                 foreach (var stock in oduzmi)
                 {
                     stock.Kolicina = stock.Kolicina - item.Kolicina;
+
                 }
                 if (item.Kolicina > 0)
                 {
-                    utz.Add(new UslugaToZanimanje() { UslugaClassID = uslugaid, ZanimanjeClassID = item.ID, Kolicina = item.Kolicina});
-                    
+                    utz.Add(new UslugaToZanimanje() { UslugaClassID = uslugaid, ZanimanjeClassID = item.ID, Kolicina = item.Kolicina, Naziv = item.Ime});
+
+
                 }
             }
             foreach(var item in utz)
@@ -81,7 +107,7 @@ namespace ozowebapp.Controllers
                 }
                 if (item2.Kolicina > 0)
                 {
-                    utp.Add(new UslugaToOprema() { UslugaClassID = uslugaid, OpremaClassID = item2.ID, Kolicina = item2.Kolicina });
+                    utp.Add(new UslugaToOprema() { UslugaClassID = uslugaid, OpremaClassID = item2.ID, Kolicina = item2.Kolicina, Naziv = item2.Ime });
                 }
             }
             foreach (var item2 in utp)

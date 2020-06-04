@@ -10,7 +10,7 @@ using ozowebapp.Models;
 namespace ozowebapp.Migrations
 {
     [DbContext(typeof(ConnectionStringClass))]
-    [Migration("20200603170024_InitMigration")]
+    [Migration("20200604121147_InitMigration")]
     partial class InitMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -166,6 +166,9 @@ namespace ozowebapp.Migrations
                     b.Property<int>("Kolicina")
                         .HasColumnType("int");
 
+                    b.Property<string>("Naziv")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("OpremaClassID")
                         .HasColumnType("int");
 
@@ -190,6 +193,9 @@ namespace ozowebapp.Migrations
 
                     b.Property<int>("Kolicina")
                         .HasColumnType("int");
+
+                    b.Property<string>("Naziv")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("UslugaClassID")
                         .HasColumnType("int");

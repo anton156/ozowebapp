@@ -81,7 +81,8 @@ namespace ozowebapp.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     UslugaClassID = table.Column<int>(nullable: false),
                     OpremaClassID = table.Column<int>(nullable: false),
-                    Kolicina = table.Column<int>(nullable: false)
+                    Kolicina = table.Column<int>(nullable: false),
+                    Naziv = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -173,7 +174,8 @@ namespace ozowebapp.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     UslugaClassID = table.Column<int>(nullable: false),
                     ZanimanjeClassID = table.Column<int>(nullable: false),
-                    Kolicina = table.Column<int>(nullable: false)
+                    Kolicina = table.Column<int>(nullable: false),
+                    Naziv = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {

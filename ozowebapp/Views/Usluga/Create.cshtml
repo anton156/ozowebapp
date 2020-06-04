@@ -41,6 +41,7 @@
                     <tr>
                         <td>
                             @Html.HiddenFor(x => Model.Zanimanja[i].ID)
+                            @Html.HiddenFor(y => Model.Zanimanja[i].Ime)
                             @Html.DisplayFor(it => Model.Zanimanja[i].Ime)
                         </td>
                        
@@ -61,6 +62,7 @@
                         <tr>
                             <td>
                                 @Html.HiddenFor(x => Model.Oprema[i].ID)
+                                @Html.HiddenFor(it => Model.Oprema[i].Ime)
                                 @Html.DisplayFor(it => Model.Oprema[i].Ime)
                             </td>
                             <td>

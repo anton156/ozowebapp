@@ -164,6 +164,9 @@ namespace ozowebapp.Migrations
                     b.Property<int>("Kolicina")
                         .HasColumnType("int");
 
+                    b.Property<string>("Naziv")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("OpremaClassID")
                         .HasColumnType("int");
 
@@ -188,6 +191,9 @@ namespace ozowebapp.Migrations
 
                     b.Property<int>("Kolicina")
                         .HasColumnType("int");
+
+                    b.Property<string>("Naziv")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("UslugaClassID")
                         .HasColumnType("int");
