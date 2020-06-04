@@ -10,10 +10,15 @@ namespace ozowebapp.Models
     {
         [Key]
         public int UslugaClassID { get; set; }
+        [Required(ErrorMessage = "Unesite ispravne podatke")]
         public string Naziv { get; set; }
+        [Required(ErrorMessage = "Unesite ispravne podatke")]
+        [Range(0, 99999999)]
         public double Cijena { get; set; }
+        [Required(ErrorMessage = "Unesite ispravne podatke")]
 
         public string Opis { get; set; }
+        [Required(ErrorMessage = "Unesite ispravne podatke")]
         public string Lokacija { get; set; }
 
         public List<CheckBoxViewModel> Zanimanja { get; set; }

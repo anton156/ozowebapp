@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Razor.Language;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using ozowebapp.Models;
+using ReflectionIT.Mvc.Paging;
 
 namespace ozowebapp.Controllers
 {
@@ -19,10 +20,20 @@ namespace ozowebapp.Controllers
             _context = context;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index(string search, int page = 1)
         {
-            var item = _context.UslugaClass.ToList();
-            return View(item);
+            if (!String.IsNullOrEmpty(search))
+            {
+                var query = _context.UslugaClass.AsNoTracking().Where(x => x.Naziv.Contains(search)).OrderBy(s => s.UslugaClassID);
+                var model = await PagingList.CreateAsync(query, 5, page);
+                return View(model);
+            }
+            else
+            {
+                var query = _context.UslugaClass.AsNoTracking().OrderBy(s => s.UslugaClassID);
+                var model = await PagingList.CreateAsync(query, 5, page);
+                return View(model);
+            }
         }
 
         [HttpGet]
