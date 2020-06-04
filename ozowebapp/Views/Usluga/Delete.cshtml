@@ -41,15 +41,16 @@
         @for (int i = 0; i < Model.UslugaToZanimanjes.Count; i++)
         {
 
-            <dd>
-                Naziv
-                @Html.DisplayFor(model => model.UslugaToZanimanjes[i].Naziv)
-                &nbsp;
-                Količina
-                @Html.DisplayFor(model => model.UslugaToZanimanjes[i].Kolicina)
-                <br />
+    <dd>
+        @Html.HiddenFor(model => model.UslugaToZanimanjes[i].ZanimanjeClassID)
+        Naziv
+        @Html.DisplayFor(model => model.UslugaToZanimanjes[i].Naziv)
+        &nbsp;
+        Količina
+        @Html.DisplayFor(model => model.UslugaToZanimanjes[i].Kolicina)
+        <br />
 
-            </dd>
+    </dd>
         }
         <dt>
             Oprema

@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Razor.Language;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using ozowebapp.Models;
 
 namespace ozowebapp.Controllers
@@ -211,6 +212,32 @@ namespace ozowebapp.Controllers
             }
 
             return View(dodajUslugu);
+        }
+        [HttpPost, ActionName("Delete")]
+        
+        public IActionResult DeleteConfirmed(int id)
+        {
+            var uslugaClass =  _context.UslugaClass.Find(id);
+            var dodajBrojZan = _context.UslugaToZanimanjes.Where(x => uslugaClass.UslugaClassID == x.UslugaClassID).ToList();
+            foreach (var item in dodajBrojZan) {
+                var DodajZanimanje = _context.Zanimanje.Where(x => item.ZanimanjeClassID == x.ZanimanjeClassID).ToList();
+                foreach (var stock in DodajZanimanje)
+                {
+                    stock.Kolicina = stock.Kolicina + item.Kolicina;
+                }
+            }
+            var dodajBrojOpr = _context.UslugaToOpremas.Where(x => uslugaClass.UslugaClassID == x.UslugaClassID).ToList();
+            foreach (var item in dodajBrojOpr)
+            {
+                var DodajOpremu = _context.Oprema.Where(x => item.OpremaClassID == x.OpremaClassID).ToList();
+                foreach (var stock in DodajOpremu)
+                {
+                    stock.Kolicina = stock.Kolicina + item.Kolicina;
+                }
+            }
+            _context.UslugaClass.Remove(uslugaClass);
+             _context.SaveChanges();
+            return RedirectToAction(nameof(Index));
         }
     }
 }
