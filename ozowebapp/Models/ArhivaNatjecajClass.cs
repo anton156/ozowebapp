@@ -6,19 +6,18 @@ using System.Threading.Tasks;
 
 namespace ozowebapp.Models
 {
-    public class PosaoClass
+    public class ArhivaNatjecajClass
     {
         [Key]
-        public int PosaoClassID { get; set; }
+        public int ArhivaNatjecajClassID { get; set; }
         public string Naziv { get; set; }
         public double Cijena { get; set; }
 
         public string Opis { get; set; }
         public string Lokacija { get; set; }
+        public string? Pobjednik { get; set; }
+        public string? Zakljucak { get; set; }
 
-        public DateTime Datum_pocetak { get; set; }
-        public DateTime? Datum_kraj { get; set; }
-
-        public int UslugaClassID { get; set; }
+        public int NatjecajClassID { get; set; }
     }
 }

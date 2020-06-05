@@ -1,0 +1,79 @@
+﻿@model IEnumerable<ozowebapp.Models.PosaoClass>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2 style="margin-top:50px;">Arhiva usluga</h2>
+
+<p>
+    @using (Html.BeginForm("Index", "Posao", FormMethod.Get))
+    {
+        @Html.TextBox("search")<input style="margin-left:4px;" type="submit" value="Pretraži" />
+    }
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Naziv)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cijena)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Opis)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Lokacija)
+            </th>
+            <th>
+                Početak usluge
+            </th>
+            <th>
+                Kraj usluge
+            </th>
+            <th>
+                ID Usluge
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Naziv)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Cijena)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Opis)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Lokacija)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Datum_pocetak)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Datum_kraj)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UslugaClassID)
+                </td>
+                @*<td>
+                    <a asp-action="Edit" asp-route-id="@item.PosaoClassID">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.PosaoClassID">Details</a> |
+                </td>*@
+            </tr>
+        }
+    </tbody>
+</table>
+<nav aria-label="Djelatnici Paging">
+    <div class="text-center">
+        @await this.Component.InvokeAsync("Pager", new { pagingList = this.Model })
+    </div>
+</nav>

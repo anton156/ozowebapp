@@ -1,0 +1,80 @@
+﻿@model IEnumerable<ozowebapp.Models.ArhivaNatjecajClass>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2 style="margin-top:50px;">Arhiva usluga</h2>
+
+<p>
+    @using (Html.BeginForm("Index", "ArhivaNatjecaji", FormMethod.Get))
+    {
+        @Html.TextBox("search")<input style="margin-left:4px;" type="submit" value="Pretraži" />
+    }
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Naziv)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cijena)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Opis)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Lokacija)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Pobjednik)
+            </th>
+            <th>
+                Zaključak
+            </th>
+            <th>
+                ID Natječaja
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Naziv)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Cijena)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Opis)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Lokacija)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Pobjednik)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Zakljucak)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NatjecajClassID)
+                </td>
+                @*<td>
+                    <a asp-action="Edit" asp-route-id="@item.ArhivaNatjecajClassID">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.ArhivaNatjecajClassID">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.ArhivaNatjecajClassID">Delete</a>
+                </td>*@
+            </tr>
+        }
+    </tbody>
+</table>
+<nav aria-label="Djelatnici Paging">
+    <div class="text-center">
+        @await this.Component.InvokeAsync("Pager", new { pagingList = this.Model })
+    </div>
+</nav>

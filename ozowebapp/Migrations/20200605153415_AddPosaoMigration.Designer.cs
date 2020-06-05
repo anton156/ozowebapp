@@ -3,54 +3,23 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ozowebapp.Models;
 
 namespace ozowebapp.Migrations
 {
     [DbContext(typeof(ConnectionStringClass))]
-    partial class ConnectionStringClassModelSnapshot : ModelSnapshot
+    [Migration("20200605153415_AddPosaoMigration")]
+    partial class AddPosaoMigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "3.1.4")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-            modelBuilder.Entity("ozowebapp.Models.ArhivaNatjecajClass", b =>
-                {
-                    b.Property<int>("ArhivaNatjecajClassID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<double>("Cijena")
-                        .HasColumnType("float");
-
-                    b.Property<string>("Lokacija")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("NatjecajClassID")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Naziv")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Opis")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Pobjednik")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Zakljucak")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("ArhivaNatjecajClassID");
-
-                    b.ToTable("ArhivaNatjecaj");
-                });
 
             modelBuilder.Entity("ozowebapp.Models.CheckBoxViewModel", b =>
                 {

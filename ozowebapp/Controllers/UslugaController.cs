@@ -79,16 +79,27 @@ namespace ozowebapp.Controllers
 
         }
         [HttpPost]
-        public IActionResult Create(UslugaViewModel UVM, UslugaClass usluge,UslugaToZanimanje UZ, UslugaToOprema UP, ZanimanjeClass ZC)
+        public IActionResult Create(UslugaViewModel UVM, PosaoClass posao, UslugaClass usluge,UslugaToZanimanje UZ, UslugaToOprema UP, ZanimanjeClass ZC)
         {
             List<UslugaToZanimanje> utz = new List<UslugaToZanimanje>();
             List<UslugaToOprema> utp = new List<UslugaToOprema>();
+
             usluge.Naziv = UVM.Naziv;
             usluge.Cijena = UVM.Cijena;
             usluge.Opis = UVM.Opis;
             usluge.Lokacija = UVM.Lokacija;
             _context.UslugaClass.Add(usluge);
             _context.SaveChanges();
+
+            posao.Naziv = UVM.Naziv;
+            posao.Cijena = UVM.Cijena;
+            posao.Opis = UVM.Opis;
+            posao.Lokacija = UVM.Lokacija;
+            posao.Datum_pocetak = DateTime.Now;
+            posao.UslugaClassID = usluge.UslugaClassID;
+            _context.Posao.Add(posao);
+            _context.SaveChanges();
+
             int uslugaid = usluge.UslugaClassID;
             foreach(var item in UVM.Zanimanja)
             {
@@ -236,6 +247,16 @@ namespace ozowebapp.Controllers
                     stock.Kolicina = stock.Kolicina + item.Kolicina;
                 }
             }
+
+            //Dodajemo datum zavrsetka usluge
+            var nadjiID = _context.Posao.Where(x => uslugaClass.UslugaClassID == x.UslugaClassID).ToList();
+            foreach (var item in nadjiID)
+            {
+                item.Datum_kraj = DateTime.Now;
+                _context.Posao.Update(item);
+                _context.SaveChanges();
+            }
+
             _context.UslugaClass.Remove(uslugaClass);
              _context.SaveChanges();
             return RedirectToAction(nameof(Index));

@@ -55,7 +55,7 @@ namespace ozowebapp.Controllers
         public IActionResult Create()
         {
             var item = _context.Zanimanje.ToList();
-            UslugaViewModel m1 = new UslugaViewModel();
+            NatjecajViewModel m1 = new NatjecajViewModel();
             m1.Zanimanja = item.Select(vm => new CheckBoxViewModel()
             {
                 ID = vm.ZanimanjeClassID,
@@ -74,16 +74,26 @@ namespace ozowebapp.Controllers
 
         }
         [HttpPost]
-        public IActionResult Create(NatjecajViewModel NVM, NatjecajClass natjecaji, NatjecajToZanimanje NZ, NatjecajToOprema UP, ZanimanjeClass ZC)
+        public IActionResult Create(NatjecajViewModel NVM, NatjecajClass natjecaji,ArhivaNatjecajClass arhiva, NatjecajToZanimanje NZ, NatjecajToOprema UP, ZanimanjeClass ZC)
         {
             List<NatjecajToZanimanje> utz = new List<NatjecajToZanimanje>();
             List<NatjecajToOprema> utp = new List<NatjecajToOprema>();
+
             natjecaji.Naziv = NVM.Naziv;
             natjecaji.Cijena = NVM.Cijena;
             natjecaji.Opis = NVM.Opis;
             natjecaji.Lokacija = NVM.Lokacija;
             _context.Natjecaj.Add(natjecaji);
             _context.SaveChanges();
+
+            arhiva.Naziv = NVM.Naziv;
+            arhiva.Cijena = NVM.Cijena;
+            arhiva.Opis = NVM.Opis;
+            arhiva.Lokacija = NVM.Lokacija;
+            arhiva.NatjecajClassID = natjecaji.NatjecajClassID;
+            _context.ArhivaNatjecaj.Add(arhiva);
+            _context.SaveChanges();
+
             int natjecajid = natjecaji.NatjecajClassID;
             foreach (var item in NVM.Zanimanja)
             {
