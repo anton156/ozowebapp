@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
@@ -33,6 +34,21 @@ namespace ozowebapp.Controllers
                 return View(model);
             }
         }
+        [HttpGet]
+        public IActionResult Edit(int id)
+        {
+            ArhivaNatjecajClass m1 = new ArhivaNatjecajClass();
+            return View(m1);
 
+        }
+        [HttpPost]
+        public IActionResult Edit(ArhivaNatjecajViewModel avm, ArhivaNatjecajClass arhiva)
+        {
+            arhiva.Pobjednik = arhiva.Pobjednik;
+            arhiva.Zakljucak = arhiva.Zakljucak;
+            _context.ArhivaNatjecaj.Update(arhiva);
+            _context.SaveChanges();
+            return View(arhiva);
+        }
     }
 }

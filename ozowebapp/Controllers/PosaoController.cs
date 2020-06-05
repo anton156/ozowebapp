@@ -33,6 +33,23 @@ namespace ozowebapp.Controllers
                 return View(model);
             }
         }
-       
+        [HttpGet]
+        public IActionResult Details(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var posaoarhiva = _context.Posao
+                .FirstOrDefault(m => m.PosaoClassID == id);
+            if (posaoarhiva == null)
+            {
+                return NotFound();
+            }
+
+            return View(posaoarhiva);
+        }
+
     }
 }

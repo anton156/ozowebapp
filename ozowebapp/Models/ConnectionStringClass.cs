@@ -29,6 +29,7 @@ namespace ozowebapp.Models
         public DbSet<NatjecajToOprema> NatjecajToOpremas { get; set; }
         public DbSet<NatjecajViewModel> NatjecajViewModels { get; set; }
         public DbSet<ArhivaNatjecajClass> ArhivaNatjecaj { get; set; }
+      
 
 
 

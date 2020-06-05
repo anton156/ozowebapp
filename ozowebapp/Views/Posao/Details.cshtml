@@ -1,0 +1,60 @@
+﻿@model ozowebapp.Models.PosaoClass
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>PosaoClass</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Naziv)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Naziv)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Cijena)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Cijena)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Opis)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Opis)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Lokacija)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Lokacija)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Datum_pocetak)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Datum_pocetak)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Datum_kraj)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Datum_kraj)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.UslugaClassID)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.UslugaClassID)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.PosaoClassID">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
