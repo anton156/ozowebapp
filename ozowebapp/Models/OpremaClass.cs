@@ -15,7 +15,7 @@ namespace ozowebapp.Models
         public string Naziv { get; set; }
         [Required(ErrorMessage = "Unesite ispravne podatke")]
         [Range(0,99999999)]
-        public int? Kolicina { get; set; }
+        public int Kolicina { get; set; }
         [Required(ErrorMessage = "Unesite ispravne podatke")]
         [Range(0, 99999999)]
         public double? Cijena { get; set; }

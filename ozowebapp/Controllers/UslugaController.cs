@@ -65,12 +65,14 @@ namespace ozowebapp.Controllers
             {
                 ID = vm.ZanimanjeClassID,
                 Ime = vm.Naziv,
+                MaxKolicina=vm.Kolicina,
             }).ToList(); ;
             var opre = _context.Oprema.ToList();
             m1.Oprema = opre.Select(vmo => new CheckBoxViewModelOprema()
             {
                 ID = vmo.OpremaClassID,
                 Ime = vmo.Naziv,
+                MaxKolicina=vmo.Kolicina,
             }).ToList(); ;
             
             return View(m1);

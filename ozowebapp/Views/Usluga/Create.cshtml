@@ -43,14 +43,18 @@
                                 @Html.HiddenFor(x => Model.Zanimanja[i].ID)
                                 @Html.HiddenFor(y => Model.Zanimanja[i].Ime)
                                 -&nbsp;
-                                @Html.DisplayFor(it => Model.Zanimanja[i].Ime)
+                                @Html.DisplayFor(it => Model.Zanimanja[i].Ime)                               
                             </td>
 
                             <td>
                                 &nbsp;
                                 &nbsp;
                                 &nbsp;
-                                @Html.TextBoxFor(it => Model.Zanimanja[i].Kolicina, new { Style = "vertical-align:3px; margin-top:3px; width:65px;", type = "number", min = "0", step = "1" })
+                                @Html.TextBoxFor(it => Model.Zanimanja[i].Kolicina, new { Style = "vertical-align:3px; margin-top:3px; width:65px;", type = "number", min = "0", max=Model.Zanimanja[i].MaxKolicina, step = "1" })
+                                &nbsp;
+                                &nbsp;
+                                Ukupno
+                                @Html.DisplayFor(it => Model.Zanimanja[i].MaxKolicina)
                             </td>
                         </tr>
                     }
@@ -73,7 +77,11 @@
                                 &nbsp;
                                 &nbsp;
                                 &nbsp;
-                                @Html.TextBoxFor(it => Model.Oprema[i].Kolicina, new { Style = "vertical-align:3px; margin-top:3px; width:65px;", type = "number", min = "0", step = "1" })
+                                @Html.TextBoxFor(it => Model.Oprema[i].Kolicina, new { Style = "vertical-align:3px; margin-top:3px; width:65px;", type = "number", min = "0", max=Model.Oprema[i].MaxKolicina, step = "1" })
+                                &nbsp;
+                                &nbsp;
+                                Ukupno
+                                @Html.DisplayFor(it => Model.Oprema[i].MaxKolicina)
                             </td>
                         </tr>
                     }

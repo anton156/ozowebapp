@@ -10,5 +10,6 @@ namespace ozowebapp.Models
         public int ID { get; set; }
         public string Ime { get; set; }
         public int Kolicina { get; set; }
+        public int MaxKolicina { get; set; }
     }
 }
