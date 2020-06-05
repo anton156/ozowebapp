@@ -11,6 +11,9 @@ namespace ozowebapp.Models
         public int NatjecajClassID { get; set; }
         public int ZanimanjeClassID { get; set; }
 
+        public int Kolicina { get; set; }
+        public string Naziv { get; set; }
+
         public virtual NatjecajClass NatjecajClass { get; set; }
         public virtual ZanimanjeClass ZanimanjeClass { get; set; }
     }

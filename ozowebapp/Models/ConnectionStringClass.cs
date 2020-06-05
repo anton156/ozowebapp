@@ -17,10 +17,15 @@ namespace ozowebapp.Models
         public DbSet<OpremaClass> Oprema { get; set; }
         public DbSet<ZanimanjeClass> Zanimanje { get; set; }
         public DbSet<DjelatnikClass> Djelatnik { get; set; }
-        public DbSet<ozowebapp.Models.UslugaClass> UslugaClass { get; set; }
-        public DbSet<ozowebapp.Models.UslugaToZanimanje> UslugaToZanimanjes { get; set; }
-        public DbSet<ozowebapp.Models.UslugaToOprema> UslugaToOpremas { get; set; }
-        public DbSet<ozowebapp.Models.UslugaViewModel> UslugaViewModel { get; set; }
+        public DbSet<UslugaClass> UslugaClass { get; set; }
+        public DbSet<UslugaToZanimanje> UslugaToZanimanjes { get; set; }
+        public DbSet<UslugaToOprema> UslugaToOpremas { get; set; }
+        public DbSet<UslugaViewModel> UslugaViewModel { get; set; }
+
+        public DbSet<NatjecajClass> Natjecaj { get; set; }
+        public DbSet<NatjecajToZanimanje> NatjecajToZanimanjes { get; set; }
+        public DbSet<NatjecajToOprema> NatjecajToOpremas { get; set; }
+        public DbSet<NatjecajViewModel> NatjecajViewModels { get; set; }
 
 
     }
