@@ -125,5 +125,51 @@ namespace ozowebapp.Controllers
 
             return RedirectToAction("Index", "Natjecaj");
         }
+        [HttpGet]
+        public IActionResult Delete(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var dodajNatjecaj = _context.Natjecaj
+                .Include(d => d.NatjecajToZanimanjes)
+                .Include(d => d.NatjecajToOpremas)
+                .FirstOrDefault(m => m.NatjecajClassID == id);
+            if (dodajNatjecaj == null)
+            {
+                return NotFound();
+            }
+
+            return View(dodajNatjecaj);
+        }
+        [HttpPost, ActionName("Delete")]
+
+        public IActionResult DeleteConfirmed(int id)
+        {
+            var natjecajClass = _context.Natjecaj.Find(id);
+            var dodajBrojZan = _context.NatjecajToZanimanjes.Where(x => natjecajClass.NatjecajClassID == x.NatjecajClassID).ToList();
+            foreach (var item in dodajBrojZan)
+            {
+                var DodajZanimanje = _context.Zanimanje.Where(x => item.ZanimanjeClassID == x.ZanimanjeClassID).ToList();
+                foreach (var stock in DodajZanimanje)
+                {
+                    stock.Kolicina = stock.Kolicina + item.Kolicina;
+                }
+            }
+            var dodajBrojOpr = _context.NatjecajToOpremas.Where(x => natjecajClass.NatjecajClassID == x.NatjecajClassID).ToList();
+            foreach (var item in dodajBrojOpr)
+            {
+                var DodajOpremu = _context.Oprema.Where(x => item.OpremaClassID == x.OpremaClassID).ToList();
+                foreach (var stock in DodajOpremu)
+                {
+                    stock.Kolicina = stock.Kolicina + item.Kolicina;
+                }
+            }
+            _context.Natjecaj.Remove(natjecajClass);
+            _context.SaveChanges();
+            return RedirectToAction(nameof(Index));
+        }
     }
 }
