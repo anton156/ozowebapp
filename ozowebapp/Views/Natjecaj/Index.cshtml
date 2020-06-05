@@ -4,11 +4,12 @@
     ViewData["Title"] = "Index";
 }
 
-<h2>Index</h2>
+<h2 style="margin-top:50px;">Natječaji</h2>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create"><button type="button" class="btn btn-primary float-lg-left">Novi natječaj</button></a>
 </p>
+
 <p>
     @using (Html.BeginForm("Index", "Natjecaj", FormMethod.Get))
     {
@@ -34,27 +35,28 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Naziv)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Cijena)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Opis)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Lokacija)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.NatjecajClassID">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.NatjecajClassID">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.NatjecajClassID">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Naziv)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Cijena)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Opis)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Lokacija)
+                </td>
+                <td>
+                    @*<a asp-action="Edit" asp-route-id="@item.NatjecajClassID"><button type="button" class="btn btn-primary float-lg-left">Uredi</button></a> &nbsp*@
+                    <a asp-action="Details" asp-route-id="@item.NatjecajClassID"><button type="button" class="btn btn-primary float-lg-left">Detalji</button></a>&nbsp
+                    <a asp-action="Delete" asp-route-id="@item.NatjecajClassID"><button type="submit" class="btn btn-warning">Izbriši</button></a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
 <nav aria-label="Djelatnici Paging">
