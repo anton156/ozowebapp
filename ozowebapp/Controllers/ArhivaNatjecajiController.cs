@@ -37,18 +37,21 @@ namespace ozowebapp.Controllers
         [HttpGet]
         public IActionResult Edit(int id)
         {
-            ArhivaNatjecajClass m1 = new ArhivaNatjecajClass();
-            return View(m1);
 
+            ArhivaNatjecajViewModel m1 = new ArhivaNatjecajViewModel();
+            
+
+            return View(m1);
         }
         [HttpPost]
-        public IActionResult Edit(ArhivaNatjecajViewModel avm, ArhivaNatjecajClass arhiva)
+        public IActionResult Edit(int id,ArhivaNatjecajViewModel avm)
         {
-            arhiva.Pobjednik = arhiva.Pobjednik;
-            arhiva.Zakljucak = arhiva.Zakljucak;
+            var arhiva = _context.ArhivaNatjecaj.Find(id);
+            arhiva.Pobjednik = avm.Pobjednik;
+            arhiva.Zakljucak = avm.Zakljucak;
             _context.ArhivaNatjecaj.Update(arhiva);
             _context.SaveChanges();
-            return View(arhiva);
+            return RedirectToAction("Index", "ArhivaNatjecaji");
         }
     }
 }
