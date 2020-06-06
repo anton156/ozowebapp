@@ -4,10 +4,10 @@
     ViewData["Title"] = "Details";
 }
 
-<h2>Details</h2>
+<h2 style="margin-top:50px;">Arhiva usluga</h2>
 
 <div>
-    <h4>PosaoClass</h4>
+    <h4>Detalji</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -35,19 +35,19 @@
             @Html.DisplayFor(model => model.Lokacija)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.Datum_pocetak)
+            Početak usluge
         </dt>
         <dd>
             @Html.DisplayFor(model => model.Datum_pocetak)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.Datum_kraj)
+            Kraj usluge
         </dt>
         <dd>
             @Html.DisplayFor(model => model.Datum_kraj)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.UslugaClassID)
+            ID Usluge
         </dt>
         <dd>
             @Html.DisplayFor(model => model.UslugaClassID)
@@ -89,6 +89,5 @@
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.PosaoClassID">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index">Nazad na popis</a>
 </div>

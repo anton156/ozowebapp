@@ -65,8 +65,8 @@
                     @Html.DisplayFor(modelItem => item.NatjecajClassID)
                 </td>
                 <td>
-                    <a asp-action="Edit" asp-route-id="@item.ArhivaNatjecajClassID">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@item.ArhivaNatjecajClassID">Details</a> 
+                    <a asp-action="Edit" asp-route-id="@item.ArhivaNatjecajClassID"><button type="button" class="btn btn-primary float-lg-left">Uredi</button></a> &nbsp
+                    <a asp-action="Details" asp-route-id="@item.ArhivaNatjecajClassID"><button type="button" class="btn btn-primary float-lg-left">Detalji</button></a>&nbsp
                 </td>
             </tr>
         }

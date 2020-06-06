@@ -4,9 +4,9 @@
     ViewData["Title"] = "Edit";
 }
 
-<h2>Edit</h2>
+<h2 style="margin-top:50px;">Arhiva natječaja</h2>
 
-<h4>ArhivaNatjecajViewModel</h4>
+<h4>Uredi:</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -23,15 +23,16 @@
                 <input asp-for="Zakljucak" class="form-control" />
                 <span asp-validation-for="Zakljucak" class="text-danger"></span>
             </div>
+            <br />
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-default" />
+                <input type="submit" value="Spremi" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index">Nazad na popis</a>
 </div>
 
 @section Scripts {

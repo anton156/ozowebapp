@@ -4,10 +4,10 @@
     ViewData["Title"] = "Details";
 }
 
-<h2>Details</h2>
+<h2 style="margin-top:50px;">Arhiva natječaja</h2>
 
 <div>
-    <h4>ArhivaNatjecajClass</h4>
+    <h4>Detalji</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -41,13 +41,13 @@
             @Html.DisplayFor(model => model.Pobjednik)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.Zakljucak)
+            Zaključak
         </dt>
         <dd>
             @Html.DisplayFor(model => model.Zakljucak)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.NatjecajClassID)
+            ID Natječaja
         </dt>
         <dd>
             @Html.DisplayFor(model => model.NatjecajClassID)
@@ -88,7 +88,8 @@
         }
     </dl>
 </div>
+<br />
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.ArhivaNatjecajClassID">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Edit" asp-route-id="@Model.ArhivaNatjecajClassID"><input type="submit" value="Uredi" class="btn btn-primary" /></a> &nbsp
+    <a asp-action="Index">Nazad na popis</a>
 </div>
