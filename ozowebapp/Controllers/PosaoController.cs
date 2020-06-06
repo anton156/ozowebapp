@@ -42,6 +42,8 @@ namespace ozowebapp.Controllers
             }
 
             var posaoarhiva = _context.Posao
+                .Include(d => d.PosaoToZanimanjes)
+                .Include(d => d.PosaoToOpremas)
                 .FirstOrDefault(m => m.PosaoClassID == id);
             if (posaoarhiva == null)
             {

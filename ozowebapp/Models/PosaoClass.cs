@@ -20,5 +20,8 @@ namespace ozowebapp.Models
         public DateTime? Datum_kraj { get; set; }
 
         public int UslugaClassID { get; set; }
+
+        public virtual List<PosaoTozanimanje> PosaoToZanimanjes { get; set; }
+        public virtual List<PosaoToOprema> PosaoToOpremas { get; set; }
     }
 }

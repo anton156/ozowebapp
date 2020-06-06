@@ -318,6 +318,62 @@ namespace ozowebapp.Migrations
                     b.ToTable("Posao");
                 });
 
+            modelBuilder.Entity("ozowebapp.Models.PosaoToOprema", b =>
+                {
+                    b.Property<int>("PosaoToOpremaID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("Kolicina")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Naziv")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("OpremaClassID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("PosaoClassID")
+                        .HasColumnType("int");
+
+                    b.HasKey("PosaoToOpremaID");
+
+                    b.HasIndex("OpremaClassID");
+
+                    b.HasIndex("PosaoClassID");
+
+                    b.ToTable("PosaoToOpremas");
+                });
+
+            modelBuilder.Entity("ozowebapp.Models.PosaoTozanimanje", b =>
+                {
+                    b.Property<int>("PosaoTozanimanjeID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("Kolicina")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Naziv")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("PosaoClassID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ZanimanjeClassID")
+                        .HasColumnType("int");
+
+                    b.HasKey("PosaoTozanimanjeID");
+
+                    b.HasIndex("PosaoClassID");
+
+                    b.HasIndex("ZanimanjeClassID");
+
+                    b.ToTable("PosaoToZanimanjes");
+                });
+
             modelBuilder.Entity("ozowebapp.Models.UslugaClass", b =>
                 {
                     b.Property<int>("UslugaClassID")
@@ -502,6 +558,36 @@ namespace ozowebapp.Migrations
                     b.HasOne("ozowebapp.Models.NatjecajClass", "NatjecajClass")
                         .WithMany("NatjecajToZanimanjes")
                         .HasForeignKey("NatjecajClassID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("ozowebapp.Models.ZanimanjeClass", "ZanimanjeClass")
+                        .WithMany()
+                        .HasForeignKey("ZanimanjeClassID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("ozowebapp.Models.PosaoToOprema", b =>
+                {
+                    b.HasOne("ozowebapp.Models.OpremaClass", "OpremaClass")
+                        .WithMany()
+                        .HasForeignKey("OpremaClassID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("ozowebapp.Models.PosaoClass", "PosaoClass")
+                        .WithMany("PosaoToOpremas")
+                        .HasForeignKey("PosaoClassID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("ozowebapp.Models.PosaoTozanimanje", b =>
+                {
+                    b.HasOne("ozowebapp.Models.PosaoClass", "PosaoClass")
+                        .WithMany("PosaoToZanimanjes")
+                        .HasForeignKey("PosaoClassID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

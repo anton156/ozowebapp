@@ -83,6 +83,8 @@ namespace ozowebapp.Controllers
         {
             List<UslugaToZanimanje> utz = new List<UslugaToZanimanje>();
             List<UslugaToOprema> utp = new List<UslugaToOprema>();
+            List<PosaoTozanimanje> ptz = new List<PosaoTozanimanje>();
+            List<PosaoToOprema> ptp = new List<PosaoToOprema>();
 
             usluge.Naziv = UVM.Naziv;
             usluge.Cijena = UVM.Cijena;
@@ -101,7 +103,8 @@ namespace ozowebapp.Controllers
             _context.SaveChanges();
 
             int uslugaid = usluge.UslugaClassID;
-            foreach(var item in UVM.Zanimanja)
+            int posaoid = posao.PosaoClassID;
+            foreach (var item in UVM.Zanimanja)
             {
                 var oduzmi = _context.Zanimanje.Where(x => item.ID == x.ZanimanjeClassID).ToList();
                 foreach (var stock in oduzmi)
@@ -112,6 +115,7 @@ namespace ozowebapp.Controllers
                 if (item.Kolicina > 0)
                 {
                     utz.Add(new UslugaToZanimanje() { UslugaClassID = uslugaid, ZanimanjeClassID = item.ID, Kolicina = item.Kolicina, Naziv = item.Ime});
+                    ptz.Add(new PosaoTozanimanje() { PosaoClassID = posaoid, ZanimanjeClassID = item.ID, Kolicina = item.Kolicina, Naziv = item.Ime });
 
 
                 }
@@ -119,7 +123,12 @@ namespace ozowebapp.Controllers
             foreach(var item in utz)
             {
                 _context.UslugaToZanimanjes.Add(item);
-               
+
+            }
+            foreach (var item in ptz)
+            {
+                _context.PosaoToZanimanjes.Add(item);
+
             }
             foreach (var item2 in UVM.Oprema)
             {
@@ -131,11 +140,16 @@ namespace ozowebapp.Controllers
                 if (item2.Kolicina > 0)
                 {
                     utp.Add(new UslugaToOprema() { UslugaClassID = uslugaid, OpremaClassID = item2.ID, Kolicina = item2.Kolicina, Naziv = item2.Ime });
+                    ptp.Add(new PosaoToOprema() { PosaoClassID = posaoid, OpremaClassID = item2.ID, Kolicina = item2.Kolicina, Naziv = item2.Ime });
                 }
             }
             foreach (var item2 in utp)
             {
                 _context.UslugaToOpremas.Add(item2);
+            }
+            foreach (var item2 in ptp)
+            {
+                _context.PosaoToOpremas.Add(item2);
             }
             _context.SaveChanges();
 

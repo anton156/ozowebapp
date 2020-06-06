@@ -22,6 +22,8 @@ namespace ozowebapp.Models
         public DbSet<UslugaToOprema> UslugaToOpremas { get; set; }
         public DbSet<UslugaViewModel> UslugaViewModel { get; set; }
         public DbSet<PosaoClass> Posao { get; set; }
+        public DbSet<PosaoTozanimanje> PosaoToZanimanjes { get; set; }
+        public DbSet<PosaoToOprema> PosaoToOpremas { get; set; }
 
 
         public DbSet<NatjecajClass> Natjecaj { get; set; }
