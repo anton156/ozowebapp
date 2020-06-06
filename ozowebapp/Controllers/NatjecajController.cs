@@ -78,6 +78,8 @@ namespace ozowebapp.Controllers
         {
             List<NatjecajToZanimanje> utz = new List<NatjecajToZanimanje>();
             List<NatjecajToOprema> utp = new List<NatjecajToOprema>();
+            List<ArhivaNatjecajToZanimanje> atz = new List<ArhivaNatjecajToZanimanje>();
+            List<ArhivaNatjecajToOprema> atp = new List<ArhivaNatjecajToOprema>();
 
             natjecaji.Naziv = NVM.Naziv;
             natjecaji.Cijena = NVM.Cijena;
@@ -95,6 +97,7 @@ namespace ozowebapp.Controllers
             _context.SaveChanges();
 
             int natjecajid = natjecaji.NatjecajClassID;
+            int arhivaid = arhiva.ArhivaNatjecajClassID;
             foreach (var item in NVM.Zanimanja)
             {
                 var oduzmi = _context.Zanimanje.Where(x => item.ID == x.ZanimanjeClassID).ToList();
@@ -106,6 +109,7 @@ namespace ozowebapp.Controllers
                 if (item.Kolicina > 0)
                 {
                     utz.Add(new NatjecajToZanimanje() { NatjecajClassID = natjecajid, ZanimanjeClassID = item.ID, Kolicina = item.Kolicina, Naziv = item.Ime });
+                    atz.Add(new ArhivaNatjecajToZanimanje() { ArhivaNatjecajClassID = arhivaid, ZanimanjeClassID = item.ID, Kolicina = item.Kolicina, Naziv = item.Ime });
 
 
                 }
@@ -113,6 +117,11 @@ namespace ozowebapp.Controllers
             foreach (var item in utz)
             {
                 _context.NatjecajToZanimanjes.Add(item);
+
+            }
+            foreach (var item in atz)
+            {
+                _context.ArhivaNatjecajToZanimanjes.Add(item);
 
             }
             foreach (var item2 in NVM.Oprema)
@@ -125,11 +134,16 @@ namespace ozowebapp.Controllers
                 if (item2.Kolicina > 0)
                 {
                     utp.Add(new NatjecajToOprema() { NatjecajClassID = natjecajid, OpremaClassID = item2.ID, Kolicina = item2.Kolicina, Naziv = item2.Ime });
+                    atp.Add(new ArhivaNatjecajToOprema() { ArhivaNatjecajClassID = arhivaid, OpremaClassID = item2.ID, Kolicina = item2.Kolicina, Naziv = item2.Ime });
                 }
             }
             foreach (var item2 in utp)
             {
                 _context.NatjecajToOpremas.Add(item2);
+            }
+            foreach (var item2 in atp)
+            {
+                _context.ArhivaNatjecajToOpremas.Add(item2);
             }
             _context.SaveChanges();
 

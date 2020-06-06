@@ -19,5 +19,8 @@ namespace ozowebapp.Models
         public string? Zakljucak { get; set; }
 
         public int NatjecajClassID { get; set; }
+
+        public virtual List<ArhivaNatjecajToZanimanje> ArhivaNatjecajToZanimanjes { get; set; }
+        public virtual List<ArhivaNatjecajToOprema> ArhivaNatjecajToOpremas { get; set; }
     }
 }

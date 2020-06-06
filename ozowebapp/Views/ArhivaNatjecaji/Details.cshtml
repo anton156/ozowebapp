@@ -1,0 +1,94 @@
+﻿@model ozowebapp.Models.ArhivaNatjecajClass
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>ArhivaNatjecajClass</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Naziv)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Naziv)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Cijena)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Cijena)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Opis)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Opis)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Lokacija)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Lokacija)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Pobjednik)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Pobjednik)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Zakljucak)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Zakljucak)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.NatjecajClassID)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.NatjecajClassID)
+        </dd>
+        <dt>
+            Zanimanja
+        </dt>
+        @for (int i = 0; i < Model.ArhivaNatjecajToZanimanjes.Count; i++)
+        {
+
+            <dd>
+
+                @Html.DisplayFor(model => model.ArhivaNatjecajToZanimanjes[i].Naziv, new { Style = "font-size:20px;" })
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                Broj radnika:
+                @Html.DisplayFor(model => model.ArhivaNatjecajToZanimanjes[i].Kolicina)
+                <br />
+
+            </dd>
+        }
+        <br />
+
+        <dt>
+            Oprema
+        </dt>
+        @for (int i = 0; i < Model.ArhivaNatjecajToOpremas.Count; i++)
+        {
+
+            <dd>
+
+                @Html.DisplayFor(model => model.ArhivaNatjecajToOpremas[i].Naziv)
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                Količina:
+                @Html.DisplayFor(model => model.ArhivaNatjecajToOpremas[i].Kolicina)
+                <br />
+
+            </dd>
+        }
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.ArhivaNatjecajClassID">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

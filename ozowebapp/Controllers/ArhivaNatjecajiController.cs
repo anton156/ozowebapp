@@ -35,6 +35,25 @@ namespace ozowebapp.Controllers
             }
         }
         [HttpGet]
+        public IActionResult Details(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var dodajNatjecaj = _context.ArhivaNatjecaj
+                .Include(d => d.ArhivaNatjecajToZanimanjes)
+                .Include(d => d.ArhivaNatjecajToOpremas)
+                .FirstOrDefault(m => m.ArhivaNatjecajClassID == id);
+            if (dodajNatjecaj == null)
+            {
+                return NotFound();
+            }
+
+            return View(dodajNatjecaj);
+        }
+        [HttpGet]
         public IActionResult Edit(int id)
         {
 
